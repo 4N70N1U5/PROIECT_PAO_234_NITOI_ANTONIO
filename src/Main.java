@@ -3,6 +3,7 @@ import exceptions.ExceptieValoareInvalida;
 import models.*;
 import services.ServiceAgentieImobiliara;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -27,7 +28,7 @@ public class Main {
         System.out.print("Prenume client: ");
         String prenume = scanner.nextLine();
 
-        System.out.println("Discount: ");
+        System.out.print("Discount: ");
         double discount = scanner.nextDouble();
         scanner.nextLine();
 
@@ -38,155 +39,75 @@ public class Main {
         if (!validareMaterial(nrMaterial))
             throw new ExceptieValoareInvalida("Nu exista niciun material cu acest numar de ordine!");
 
-        System.out.println("Suprafata utila: ");
+        System.out.print("Suprafata utila: ");
         int suprafataUtila = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Numar camere: ");
+        System.out.print("Numar camere: ");
         int numarCamere = scanner.nextInt();
         scanner.nextLine();
 
         if (tipLocuinta == 1) {
-            System.out.println("Etaj: ");
+            System.out.print("Etaj: ");
             int etaj = scanner.nextInt();
             scanner.nextLine();
 
-            switch (nrMaterial) {
-                case 1 -> {
-                    return new Apartament(nume, prenume, discount, Materiale.LEMN, suprafataUtila, numarCamere, etaj);
-                }
-                case 2 -> {
-                    return new Apartament(nume, prenume, discount, Materiale.CARAMIDA, suprafataUtila, numarCamere, etaj);
-                }
-                case 3 -> {
-                    return new Apartament(nume, prenume, discount, Materiale.BETON, suprafataUtila, numarCamere, etaj);
-                }
-                case 4 -> {
-                    return new Apartament(nume, prenume, discount, Materiale.BETON_ARMAT, suprafataUtila, numarCamere, etaj);
-                }
-                case 5 -> {
-                    return new Apartament(nume, prenume, discount, Materiale.METAL, suprafataUtila, numarCamere, etaj);
-                }
-            }
+            return new Apartament(nume, prenume, discount, Materiale.values()[nrMaterial - 1], suprafataUtila, numarCamere, etaj);
         }
         else if (tipLocuinta == 2) {
-            System.out.println("Etaj: ");
+            System.out.print("Etaj: ");
             int etaj = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("Numar etaje: ");
+            System.out.print("Numar etaje: ");
             int nrEtaje = scanner.nextInt();
             scanner.nextLine();
 
-            switch (nrMaterial) {
-                case 1 -> {
-                    return new ApartamentDuplex(nume, prenume, discount, Materiale.LEMN, suprafataUtila, numarCamere, etaj, nrEtaje);
-                }
-                case 2 -> {
-                    return new ApartamentDuplex(nume, prenume, discount, Materiale.CARAMIDA, suprafataUtila, numarCamere, etaj, nrEtaje);
-                }
-                case 3 -> {
-                    return new ApartamentDuplex(nume, prenume, discount, Materiale.BETON, suprafataUtila, numarCamere, etaj, nrEtaje);
-                }
-                case 4 -> {
-                    return new ApartamentDuplex(nume, prenume, discount, Materiale.BETON_ARMAT, suprafataUtila, numarCamere, etaj, nrEtaje);
-                }
-                case 5 -> {
-                    return new ApartamentDuplex(nume, prenume, discount, Materiale.METAL, suprafataUtila, numarCamere, etaj, nrEtaje);
-                }
-            }
+            return new ApartamentDuplex(nume, prenume, discount, Materiale.values()[nrMaterial - 1], suprafataUtila, numarCamere, etaj, nrEtaje);
         }
         else if (tipLocuinta == 3) {
-            System.out.println("Etaj: ");
+            System.out.print("Etaj: ");
             int etaj = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("Suprafata gradina: ");
+            System.out.print("Suprafata gradina: ");
             int suprafataGradina = scanner.nextInt();
             scanner.nextLine();
 
-            switch (nrMaterial) {
-                case 1 -> {
-                    return new ApartamentCuGradina(nume, prenume, discount, Materiale.LEMN, suprafataUtila, numarCamere, etaj, suprafataGradina);
-                }
-                case 2 -> {
-                    return new ApartamentCuGradina(nume, prenume, discount, Materiale.CARAMIDA, suprafataUtila, numarCamere, etaj, suprafataGradina);
-                }
-                case 3 -> {
-                    return new ApartamentCuGradina(nume, prenume, discount, Materiale.BETON, suprafataUtila, numarCamere, etaj, suprafataGradina);
-                }
-                case 4 -> {
-                    return new ApartamentCuGradina(nume, prenume, discount, Materiale.BETON_ARMAT, suprafataUtila, numarCamere, etaj, suprafataGradina);
-                }
-                case 5 -> {
-                    return new ApartamentCuGradina(nume, prenume, discount, Materiale.METAL, suprafataUtila, numarCamere, etaj, suprafataGradina);
-                }
-            }
+            return new ApartamentCuGradina(nume, prenume, discount, Materiale.values()[nrMaterial - 1], suprafataUtila, numarCamere, etaj, suprafataGradina);
         }
         else if (tipLocuinta == 4) {
-            System.out.println("Numar etaje: ");
+            System.out.print("Numar etaje: ");
             int nrEtaje = scanner.nextInt();
             scanner.nextLine();
 
-            switch (nrMaterial) {
-                case 1 -> {
-                    return new Casa(nume, prenume, discount, Materiale.LEMN, suprafataUtila, numarCamere, nrEtaje);
-                }
-                case 2 -> {
-                    return new Casa(nume, prenume, discount, Materiale.CARAMIDA, suprafataUtila, numarCamere, nrEtaje);
-                }
-                case 3 -> {
-                    return new Casa(nume, prenume, discount, Materiale.BETON, suprafataUtila, numarCamere, nrEtaje);
-                }
-                case 4 -> {
-                    return new Casa(nume, prenume, discount, Materiale.BETON_ARMAT, suprafataUtila, numarCamere, nrEtaje);
-                }
-                case 5 -> {
-                    return new Casa(nume, prenume, discount, Materiale.METAL, suprafataUtila, numarCamere, nrEtaje);
-                }
-            }
+            return new Casa(nume, prenume, discount, Materiale.values()[nrMaterial - 1], suprafataUtila, numarCamere, nrEtaje);
         }
         else if (tipLocuinta == 5) {
-            System.out.println("Numar etaje: ");
+            System.out.print("Numar etaje: ");
             int nrEtaje = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("Suprafata curte: ");
+            System.out.print("Suprafata curte: ");
             int suprafataCurte = scanner.nextInt();
             scanner.nextLine();
 
-            switch (nrMaterial) {
-                case 1 -> {
-                    return new CasaCuCurte(nume, prenume, discount, Materiale.LEMN, suprafataUtila, numarCamere, nrEtaje, suprafataCurte);
-                }
-                case 2 -> {
-                    return new CasaCuCurte(nume, prenume, discount, Materiale.CARAMIDA, suprafataUtila, numarCamere, nrEtaje, suprafataCurte);
-                }
-                case 3 -> {
-                    return new CasaCuCurte(nume, prenume, discount, Materiale.BETON, suprafataUtila, numarCamere, nrEtaje, suprafataCurte);
-                }
-                case 4 -> {
-                    return new CasaCuCurte(nume, prenume, discount, Materiale.BETON_ARMAT, suprafataUtila, numarCamere, nrEtaje, suprafataCurte);
-                }
-                case 5 -> {
-                    return new CasaCuCurte(nume, prenume, discount, Materiale.METAL, suprafataUtila, numarCamere, nrEtaje, suprafataCurte);
-                }
-            }
+            return new CasaCuCurte(nume, prenume, discount, Materiale.values()[nrMaterial - 1], suprafataUtila, numarCamere, nrEtaje, suprafataCurte);
         }
         else if (tipLocuinta == 6) {
-            System.out.println("Numar etaje: ");
+            System.out.print("Numar etaje: ");
             int nrEtaje = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("Suprafata curte: ");
+            System.out.print("Suprafata curte: ");
             int suprafataCurte = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("Lungime piscina: ");
+            System.out.print("Lungime piscina: ");
             int lungimePiscina = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.println("Latime piscina: ");
+            System.out.print("Latime piscina: ");
             int latimePiscina = scanner.nextInt();
             scanner.nextLine();
 
@@ -237,8 +158,10 @@ public class Main {
                         System.out.print("Introdu numele agentiei (sau \"ANULARE\" pentru a anula): ");
                         String numeAgentie = scanner.nextLine();
 
-                        if (Objects.equals(numeAgentie, "ANULARE"))
+                        if (Objects.equals(numeAgentie, "ANULARE")) {
+                            skipSleep = true;
                             break;
+                        }
 
                         AgentieImobiliara agentieImobiliara = new AgentieImobiliara(numeAgentie);
 
@@ -251,7 +174,7 @@ public class Main {
                     case 2:
                         System.out.println("Ai ales 2: Afiseaza agentiile imobiliare.");
 
-                        service.afiseazaAgentii();
+                        service.afiseazaNumeAgentii();
 
                         System.out.println("Apasa enter pentru a continua.");
                         scanner.nextLine();
@@ -262,7 +185,7 @@ public class Main {
                     case 3: {
                         System.out.println("Ai ales 3: Modifica o agentie imobiliara.");
 
-                        service.afiseazaAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -308,7 +231,7 @@ public class Main {
                     case 4: {
                         System.out.println("Ai ales 4: Sterge o agentie imobiliara.");
 
-                        service.afiseazaAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -408,14 +331,215 @@ public class Main {
                         break;
                     }
 
-                    case 6:
-                        break;
+                    case 6: {
+                        System.out.println("Ai ales 6: Afiseaza locuintele.");
 
-                    case 7:
-                        break;
+                        service.afiseazaNumeAgentii();
 
-                    case 8:
+                        boolean indexValid = false;
+
+                        while (!indexValid) {
+                            System.out.print("Alege agentia pentru care vrei sa afisezi locuintele (sau 0 pentru toate agentiile, -1 pentru a anula): ");
+                            try {
+                                int i = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (i == -1) {
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                if (i == 0) {
+                                    System.out.println();
+                                    service.afiseazaAgentii();
+
+                                    System.out.println("Apasa enter pentru a continua.");
+                                    scanner.nextLine();
+
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
+
+                                try {
+                                    System.out.println();
+                                    service.afiseazaLocuinteAgentie(i);
+
+                                    indexValid = true;
+
+                                    System.out.println("Apasa enter pentru a continua.");
+                                    scanner.nextLine();
+
+                                    skipSleep = true;
+                                }
+                                catch (IndexOutOfBoundsException exception) {
+                                    afisareMesajIndexInvalid();
+                                }
+                            }
+                            catch (InputMismatchException exception) {
+                                scanner.nextLine();
+                                afisareMesajInputInvalid();
+                            }
+                        }
                         break;
+                    }
+
+                    case 7: {
+                        System.out.println("Ai ales 7: Modifica o locuinta.");
+
+                        service.afiseazaNumeAgentii();
+
+                        boolean indexValid = false;
+
+                        while (!indexValid) {
+                            System.out.print("Alege agentia pentru care vrei sa modifici o locuinta (sau -1 pentru a anula): ");
+                            try {
+                                int i = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (i == -1) {
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
+
+                                try {
+                                    System.out.println();
+                                    service.afiseazaLocuinteAgentieIndexate(i);
+
+                                    indexValid = true;
+
+                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>(service.getAgentie(i).getLocuinte().values());
+
+                                    boolean indexLocuintaValid = false;
+
+                                    while (!indexLocuintaValid) {
+                                        System.out.print("Alege locuinta pe care vrei sa o modifici: ");
+                                        try {
+                                            int iLocuinta = scanner.nextInt();
+                                            scanner.nextLine();
+
+                                            iLocuinta--;
+
+                                            try {
+                                                int tipLocuinta;
+
+                                                if (listaLocuinte.get(iLocuinta).getClass().equals(Apartament.class)) {
+                                                    tipLocuinta = 1;
+                                                }
+                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(ApartamentDuplex.class)) {
+                                                    tipLocuinta = 2;
+                                                }
+                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(ApartamentCuGradina.class)) {
+                                                    tipLocuinta = 3;
+                                                }
+                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(Casa.class)) {
+                                                    tipLocuinta = 4;
+                                                }
+                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(CasaCuCurte.class)) {
+                                                    tipLocuinta = 5;
+                                                }
+                                                else {
+                                                    tipLocuinta = 6;
+                                                }
+
+                                                Locuinta locuintaModificata = citireLocuinta(tipLocuinta);
+
+                                                indexLocuintaValid = true;
+
+                                                service.modificaLocuinta(i, iLocuinta, locuintaModificata);
+                                                System.out.println("Locuinta a fost modificata.");
+                                            }
+                                            catch (IndexOutOfBoundsException exception) {
+                                                afisareMesajIndexInvalid();
+                                            }
+                                        }
+                                        catch (InputMismatchException exception) {
+                                            scanner.nextLine();
+                                            afisareMesajInputInvalid();
+                                        }
+                                    }
+                                }
+                                catch (IndexOutOfBoundsException exception) {
+                                    afisareMesajIndexInvalid();
+                                }
+                            }
+                            catch (InputMismatchException exception) {
+                                scanner.nextLine();
+                                afisareMesajInputInvalid();
+                            }
+                        }
+                        break;
+                    }
+
+                    case 8:{
+                        System.out.println("Ai ales 8: Sterge o locuinta.");
+
+                        service.afiseazaNumeAgentii();
+
+                        boolean indexValid = false;
+
+                        while (!indexValid) {
+                            System.out.print("Alege agentia pentru care vrei sa stergi o locuinta (sau -1 pentru a anula): ");
+                            try {
+                                int i = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (i == -1) {
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
+
+                                try {
+                                    System.out.println();
+                                    service.afiseazaLocuinteAgentieIndexate(i);
+
+                                    indexValid = true;
+
+//                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>(service.getAgentie(i).getLocuinte().values());
+
+                                    boolean indexLocuintaValid = false;
+
+                                    while (!indexLocuintaValid) {
+                                        System.out.print("Alege locuinta pe care vrei sa o stergi: ");
+                                        try {
+                                            int iLocuinta = scanner.nextInt();
+                                            scanner.nextLine();
+
+                                            iLocuinta--;
+
+                                            try {
+                                                service.stergeLocuinta(i, iLocuinta);
+
+                                                indexLocuintaValid = true;
+
+                                                System.out.println("Locuinta a fost stearsa.");
+                                            }
+                                            catch (IndexOutOfBoundsException exception) {
+                                                afisareMesajIndexInvalid();
+                                            }
+                                        }
+                                        catch (InputMismatchException exception) {
+                                            scanner.nextLine();
+                                            afisareMesajInputInvalid();
+                                        }
+                                    }
+                                }
+                                catch (IndexOutOfBoundsException exception) {
+                                    afisareMesajIndexInvalid();
+                                }
+                            }
+                            catch (InputMismatchException exception) {
+                                scanner.nextLine();
+                                afisareMesajInputInvalid();
+                            }
+                        }
+                        break;
+                    }
 
                     case 9:
                         break;

@@ -127,6 +127,16 @@ public class AgentieImobiliara {
         }
     }
 
+    public void afisareLocuinteIndexate() {
+        int index = 1;
+        for (Double i : locuinte.keySet()) {
+            System.out.println("Locuinta " + index + ": ");
+            index++;
+            locuinte.get(i).afisareLocuinta();
+            System.out.println();
+        }
+    }
+
     @Override
     public String toString() {
         return "AgentieImobiliara{" +

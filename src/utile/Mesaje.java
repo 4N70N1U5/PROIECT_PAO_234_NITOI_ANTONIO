@@ -2,7 +2,7 @@ package utile;
 
 public class Mesaje {
     public static void afisareOptiuni() {
-        System.out.println("Te rog alege o optiune:");
+        System.out.println("Te rog alege o optiune (pentru optiunile 5-10 trebuie sa existe agentii imobiliare):");
         System.out.println("Optiunea 1: Adauga o agentie imobiliara.");
         System.out.println("Optiunea 2: Afiseaza agentiile imobiliare.");
         System.out.println("Optiunea 3: Modifica o agentie imobiliara.");
@@ -35,7 +35,7 @@ public class Mesaje {
         System.out.println("3: Beton");
         System.out.println("4: Beton armat");
         System.out.println("5: Metal");
-        System.out.println("Material structura de rezistenta: ");
+        System.out.print("Material structura de rezistenta: ");
     }
 
     public static void afisareMesajInputInvalid() {

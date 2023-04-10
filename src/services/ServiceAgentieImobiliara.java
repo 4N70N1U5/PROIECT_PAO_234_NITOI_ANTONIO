@@ -22,8 +22,6 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
             System.out.println("Locuinte: ");
             agentiiImobiliare.get(i).afisareLocuinte();
-            System.out.println();
-            System.out.println();
         }
     }
 
@@ -99,5 +97,37 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
         TreeMap<Double, Locuinta> locuinte = agentieImobiliara.getLocuinte();
         locuinte.put(locuinta.calculPretCumparare(0), locuinta);
         agentieImobiliara.setLocuinte(locuinte);
+    }
+
+    @Override
+    public void afiseazaLocuinteAgentie(int i) {
+        agentiiImobiliare.get(i).afisareLocuinte();
+    }
+
+    @Override
+    public void afiseazaLocuinteAgentieIndexate(int i) {
+        agentiiImobiliare.get(i).afisareLocuinteIndexate();
+    }
+
+    @Override
+    public void modificaLocuinta(int iAgentie, int iLocuinta, Locuinta locuintaModificata) {
+        ArrayList<Locuinta> listaLocuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
+        listaLocuinte.set(iLocuinta, locuintaModificata);
+        TreeMap<Double, Locuinta> mapLocuinte = new TreeMap<>();
+        for (int i = 0; i < listaLocuinte.size(); i++) {
+            mapLocuinte.put(listaLocuinte.get(i).calculPretCumparare(0), listaLocuinte.get(i));
+        }
+        agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
+    }
+
+    @Override
+    public void stergeLocuinta(int iAgentie, int iLocuinta) {
+        ArrayList<Locuinta> listaLocuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
+        listaLocuinte.remove(iLocuinta);
+        TreeMap<Double, Locuinta> mapLocuinte = new TreeMap<>();
+        for (int i = 0; i < listaLocuinte.size(); i++) {
+            mapLocuinte.put(listaLocuinte.get(i).calculPretCumparare(0), listaLocuinte.get(i));
+        }
+        agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
     }
 }

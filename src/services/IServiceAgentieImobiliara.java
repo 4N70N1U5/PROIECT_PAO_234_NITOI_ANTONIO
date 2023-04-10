@@ -14,4 +14,8 @@ public interface IServiceAgentieImobiliara {
     void modificaAgentie(int i, AgentieImobiliara agentieModificata);
     void stergeAgentie(int i);
     void adaugaLocuinta(int i, Locuinta locuinta);
+    void afiseazaLocuinteAgentie(int i);
+    void afiseazaLocuinteAgentieIndexate(int i);
+    void modificaLocuinta(int iAgentie, int iLocuinta, Locuinta locuintaModificata);
+    void stergeLocuinta(int iAgentie, int iLocuinta);
 }
