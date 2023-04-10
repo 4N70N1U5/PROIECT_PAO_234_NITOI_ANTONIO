@@ -3,18 +3,14 @@ package models;
 public abstract class Locuinta {
     protected String numeClient;
     protected String prenumeClient;
-    protected Dezvoltator dezvoltator;
-    protected Arhitect arhitect;
-    protected int suprafataUtila;
     protected double discount;
+    protected int suprafataUtila;
 
-    public Locuinta(String numeClient, String prenumeClient, Dezvoltator dezvoltator, Arhitect arhitect, int suprafataUtila, double discount) {
+    public Locuinta(String numeClient, String prenumeClient, double discount, int suprafataUtila) {
         this.numeClient = numeClient;
         this.prenumeClient = prenumeClient;
-        this.dezvoltator = dezvoltator;
-        this.arhitect = arhitect;
-        this.suprafataUtila = suprafataUtila;
         this.discount = discount;
+        this.suprafataUtila = suprafataUtila;
     }
 
     public String getNumeClient() {
@@ -33,20 +29,12 @@ public abstract class Locuinta {
         this.prenumeClient = prenumeClient;
     }
 
-    public Dezvoltator getDezvoltator() {
-        return dezvoltator;
+    public double getDiscount() {
+        return discount;
     }
 
-    public void setDezvoltator(Dezvoltator dezvoltator) {
-        this.dezvoltator = dezvoltator;
-    }
-
-    public Arhitect getArhitect() {
-        return arhitect;
-    }
-
-    public void setArhitect(Arhitect arhitect) {
-        this.arhitect = arhitect;
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public int getSuprafataUtila() {
@@ -57,22 +45,12 @@ public abstract class Locuinta {
         this.suprafataUtila = suprafataUtila;
     }
 
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
-    }
-
     public abstract double calculPretChirie(int aplicareDiscount);
 
     public abstract double calculPretCumparare(int aplicareDiscount);
 
     public void afisareLocuinta() {
         System.out.println("Nume client: " + numeClient + " " + prenumeClient);
-        System.out.println("Nume dezvoltator: " + dezvoltator.getNumeCompanie());
-        System.out.println("Nume arhitect: " + arhitect.getNume() + " " + arhitect.getPrenume());
         System.out.println("Discount aplicat: " + discount);
         System.out.println("Suprafata utila: " + suprafataUtila);
     }
@@ -81,10 +59,9 @@ public abstract class Locuinta {
     public String toString() {
         return "Locuinta{" +
                 "numeClient='" + numeClient + '\'' +
-                ", dezvoltator=" + dezvoltator +
-                ", arhitect=" + arhitect +
-                ", suprafataUtila=" + suprafataUtila +
+                ", prenumeClient='" + prenumeClient + '\'' +
                 ", discount=" + discount +
+                ", suprafataUtila=" + suprafataUtila +
                 '}';
     }
 }
