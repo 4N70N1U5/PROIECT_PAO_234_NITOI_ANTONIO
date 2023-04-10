@@ -152,7 +152,7 @@ public class Main {
                 clear();
 
                 switch (input) {
-                    case 1: {
+                    case 1 -> {
                         System.out.println("Ai ales 1: Adauga o agentie imobiliara.");
 
                         System.out.print("Introdu numele agentiei (sau \"ANULARE\" pentru a anula): ");
@@ -168,21 +168,15 @@ public class Main {
                         service.adaugaAgentie(agentieImobiliara);
 
                         System.out.println("Agentia a fost adaugata.");
-                        break;
                     }
-
-                    case 2:
+                    case 2 -> {
                         System.out.println("Ai ales 2: Afiseaza agentiile imobiliare.");
-
                         service.afiseazaNumeAgentii();
-
                         System.out.println("Apasa enter pentru a continua.");
                         scanner.nextLine();
-
                         skipSleep = true;
-                        break;
-
-                    case 3: {
+                    }
+                    case 3 -> {
                         System.out.println("Ai ales 3: Modifica o agentie imobiliara.");
 
                         service.afiseazaNumeAgentii();
@@ -215,20 +209,16 @@ public class Main {
                                     service.modificaAgentie(i, agentieModificata);
 
                                     System.out.println("Agentia a fost modificata.");
-                                }
-                                catch (IndexOutOfBoundsException exception) {
+                                } catch (IndexOutOfBoundsException exception) {
                                     afisareMesajIndexInvalid();
                                 }
-                            }
-                            catch (InputMismatchException exception) {
+                            } catch (InputMismatchException exception) {
                                 scanner.nextLine();
                                 afisareMesajInputInvalid();
                             }
                         }
-                        break;
                     }
-
-                    case 4: {
+                    case 4 -> {
                         System.out.println("Ai ales 4: Sterge o agentie imobiliara.");
 
                         service.afiseazaNumeAgentii();
@@ -254,20 +244,16 @@ public class Main {
                                     indexValid = true;
 
                                     System.out.println("Agentia a fost stearsa.");
-                                }
-                                catch (IndexOutOfBoundsException exception) {
+                                } catch (IndexOutOfBoundsException exception) {
                                     afisareMesajIndexInvalid();
                                 }
-                            }
-                            catch (InputMismatchException exception) {
+                            } catch (InputMismatchException exception) {
                                 scanner.nextLine();
                                 afisareMesajInputInvalid();
                             }
                         }
-                        break;
                     }
-
-                    case 5: {
+                    case 5 -> {
                         System.out.println("Ai ales 5: Adauga o locuinta.");
 
                         service.afiseazaNumeAgentii();
@@ -307,31 +293,24 @@ public class Main {
                                             service.adaugaLocuinta(i, locuinta);
 
                                             System.out.println("Locuinta a fost adaugata.");
-                                        }
-                                        else
+                                        } else
                                             throw new ExceptieValoareInvalida("Tipul locuintei nu este valid!");
-                                    }
-                                    catch (InputMismatchException exception) {
+                                    } catch (InputMismatchException exception) {
                                         scanner.nextLine();
                                         afisareMesajInputInvalid();
-                                    }
-                                    catch (ExceptieSelectieInvalida | ExceptieValoareInvalida exceptie) {
+                                    } catch (ExceptieSelectieInvalida | ExceptieValoareInvalida exceptie) {
                                         System.out.println(exceptie.getMessage());
                                     }
-                                }
-                                catch (IndexOutOfBoundsException exception) {
+                                } catch (IndexOutOfBoundsException exception) {
                                     afisareMesajIndexInvalid();
                                 }
-                            }
-                            catch (InputMismatchException exception) {
+                            } catch (InputMismatchException exception) {
                                 scanner.nextLine();
                                 afisareMesajInputInvalid();
                             }
                         }
-                        break;
                     }
-
-                    case 6: {
+                    case 6 -> {
                         System.out.println("Ai ales 6: Afiseaza locuintele.");
 
                         service.afiseazaNumeAgentii();
@@ -351,7 +330,7 @@ public class Main {
 
                                 if (i == 0) {
                                     System.out.println();
-                                    service.afiseazaAgentii();
+                                    service.afiseazaLocuinteAgentii();
 
                                     System.out.println("Apasa enter pentru a continua.");
                                     scanner.nextLine();
@@ -372,20 +351,16 @@ public class Main {
                                     scanner.nextLine();
 
                                     skipSleep = true;
-                                }
-                                catch (IndexOutOfBoundsException exception) {
+                                } catch (IndexOutOfBoundsException exception) {
                                     afisareMesajIndexInvalid();
                                 }
-                            }
-                            catch (InputMismatchException exception) {
+                            } catch (InputMismatchException exception) {
                                 scanner.nextLine();
                                 afisareMesajInputInvalid();
                             }
                         }
-                        break;
                     }
-
-                    case 7: {
+                    case 7 -> {
                         System.out.println("Ai ales 7: Modifica o locuinta.");
 
                         service.afiseazaNumeAgentii();
@@ -428,20 +403,15 @@ public class Main {
 
                                                 if (listaLocuinte.get(iLocuinta).getClass().equals(Apartament.class)) {
                                                     tipLocuinta = 1;
-                                                }
-                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(ApartamentDuplex.class)) {
+                                                } else if (listaLocuinte.get(iLocuinta).getClass().equals(ApartamentDuplex.class)) {
                                                     tipLocuinta = 2;
-                                                }
-                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(ApartamentCuGradina.class)) {
+                                                } else if (listaLocuinte.get(iLocuinta).getClass().equals(ApartamentCuGradina.class)) {
                                                     tipLocuinta = 3;
-                                                }
-                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(Casa.class)) {
+                                                } else if (listaLocuinte.get(iLocuinta).getClass().equals(Casa.class)) {
                                                     tipLocuinta = 4;
-                                                }
-                                                else if (listaLocuinte.get(iLocuinta).getClass().equals(CasaCuCurte.class)) {
+                                                } else if (listaLocuinte.get(iLocuinta).getClass().equals(CasaCuCurte.class)) {
                                                     tipLocuinta = 5;
-                                                }
-                                                else {
+                                                } else {
                                                     tipLocuinta = 6;
                                                 }
 
@@ -451,30 +421,24 @@ public class Main {
 
                                                 service.modificaLocuinta(i, iLocuinta, locuintaModificata);
                                                 System.out.println("Locuinta a fost modificata.");
-                                            }
-                                            catch (IndexOutOfBoundsException exception) {
+                                            } catch (IndexOutOfBoundsException exception) {
                                                 afisareMesajIndexInvalid();
                                             }
-                                        }
-                                        catch (InputMismatchException exception) {
+                                        } catch (InputMismatchException exception) {
                                             scanner.nextLine();
                                             afisareMesajInputInvalid();
                                         }
                                     }
-                                }
-                                catch (IndexOutOfBoundsException exception) {
+                                } catch (IndexOutOfBoundsException exception) {
                                     afisareMesajIndexInvalid();
                                 }
-                            }
-                            catch (InputMismatchException exception) {
+                            } catch (InputMismatchException exception) {
                                 scanner.nextLine();
                                 afisareMesajInputInvalid();
                             }
                         }
-                        break;
                     }
-
-                    case 8:{
+                    case 8 -> {
                         System.out.println("Ai ales 8: Sterge o locuinta.");
 
                         service.afiseazaNumeAgentii();
@@ -518,45 +482,129 @@ public class Main {
                                                 indexLocuintaValid = true;
 
                                                 System.out.println("Locuinta a fost stearsa.");
-                                            }
-                                            catch (IndexOutOfBoundsException exception) {
+                                            } catch (IndexOutOfBoundsException exception) {
                                                 afisareMesajIndexInvalid();
                                             }
-                                        }
-                                        catch (InputMismatchException exception) {
+                                        } catch (InputMismatchException exception) {
                                             scanner.nextLine();
                                             afisareMesajInputInvalid();
                                         }
                                     }
-                                }
-                                catch (IndexOutOfBoundsException exception) {
+                                } catch (IndexOutOfBoundsException exception) {
                                     afisareMesajIndexInvalid();
                                 }
-                            }
-                            catch (InputMismatchException exception) {
+                            } catch (InputMismatchException exception) {
                                 scanner.nextLine();
                                 afisareMesajInputInvalid();
                             }
                         }
-                        break;
                     }
+                    case 9 -> {
+                        System.out.println("Ai ales 9: Calculeaza si afiseaza preturi de cumparare.");
 
-                    case 9:
-                        break;
+                        service.afiseazaNumeAgentii();
 
-                    case 10:
-                        break;
+                        boolean indexValid = false;
 
-                    case 0:
+                        while (!indexValid) {
+                            System.out.print("Alege agentia pentru care vrei sa afisezi preturile de cumparare (sau 0 pentru toate agentiile, -1 pentru a anula): ");
+                            try {
+                                int i = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (i == -1) {
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                if (i == 0) {
+                                    System.out.println();
+                                    service.afiseazaPreturiCumparareAgentii();
+
+                                    System.out.println("Apasa enter pentru a continua.");
+                                    scanner.nextLine();
+
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
+
+                                try {
+                                    System.out.println();
+                                    service.afiseazaPreturiCumparareAgentie(i);
+
+                                    indexValid = true;
+
+                                    System.out.println("Apasa enter pentru a continua.");
+                                    scanner.nextLine();
+
+                                    skipSleep = true;
+                                } catch (IndexOutOfBoundsException exception) {
+                                    afisareMesajIndexInvalid();
+                                }
+                            } catch (InputMismatchException exception) {
+                                scanner.nextLine();
+                                afisareMesajInputInvalid();
+                            }
+                        }
+                    }
+                    case 10 -> {
+                        System.out.println("Ai ales 10: Calculeaza si afiseaza chirii.");
+
+                        service.afiseazaNumeAgentii();
+
+                        boolean indexValid = false;
+
+                        while (!indexValid) {
+                            System.out.print("Alege agentia pentru care vrei sa afisezi chiriile (sau 0 pentru toate agentiile, -1 pentru a anula): ");
+                            try {
+                                int i = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (i == -1) {
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                if (i == 0) {
+                                    System.out.println();
+                                    service.afiseazaPreturiChiriiAgentii();
+
+                                    System.out.println("Apasa enter pentru a continua.");
+                                    scanner.nextLine();
+
+                                    skipSleep = true;
+                                    break;
+                                }
+
+                                i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
+
+                                try {
+                                    System.out.println();
+                                    service.afiseazaPreturiChiriiAgentie(i);
+
+                                    indexValid = true;
+
+                                    System.out.println("Apasa enter pentru a continua.");
+                                    scanner.nextLine();
+
+                                    skipSleep = true;
+                                } catch (IndexOutOfBoundsException exception) {
+                                    afisareMesajIndexInvalid();
+                                }
+                            } catch (InputMismatchException exception) {
+                                scanner.nextLine();
+                                afisareMesajInputInvalid();
+                            }
+                        }
+                    }
+                    case 0 -> {
                         System.out.println("Ai ales 0: Inchide programul.");
                         System.out.println("Programul se va inchide.");
-
                         exitProgram = true;
-
-                        break;
-
-                    default:
-                        throw new ExceptieSelectieInvalida();
+                    }
+                    default -> throw new ExceptieSelectieInvalida();
                 }
             }
             catch (InputMismatchException exception) {

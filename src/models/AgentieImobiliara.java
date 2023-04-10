@@ -127,6 +127,22 @@ public class AgentieImobiliara {
         }
     }
 
+    public void afisareLocuintePretCumparare() {
+        for (Double i : locuinte.keySet()) {
+            locuinte.get(i).afisareLocuinta();
+            System.out.println("Pret de cumparare: " + locuinte.get(i).calculPretCumparare(0));
+            System.out.println();
+        }
+    }
+
+    public void afisareLocuinteChirii() {
+        for (Double i : locuinte.keySet()) {
+            locuinte.get(i).afisareLocuinta();
+            System.out.println("Chirie: " + locuinte.get(i).calculPretChirie(0));
+            System.out.println();
+        }
+    }
+
     public void afisareLocuinteIndexate() {
         int index = 1;
         for (Double i : locuinte.keySet()) {

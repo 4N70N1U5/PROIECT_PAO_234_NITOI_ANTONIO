@@ -17,15 +17,6 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
     }
 
     @Override
-    public void afiseazaAgentii() {
-        for (int i = 0; i < agentiiImobiliare.size(); i++) {
-            System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
-            System.out.println("Locuinte: ");
-            agentiiImobiliare.get(i).afisareLocuinte();
-        }
-    }
-
-    @Override
     public void afiseazaNumeAgentii() {
         for (int i = 0; i < agentiiImobiliare.size(); i++) {
             System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
@@ -100,8 +91,45 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
     }
 
     @Override
+    public void afiseazaLocuinteAgentii() {
+        for (int i = 0; i < agentiiImobiliare.size(); i++) {
+            System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
+            System.out.println("Locuinte: ");
+            agentiiImobiliare.get(i).afisareLocuinte();
+        }
+    }
+
+    @Override
+    public void afiseazaPreturiCumparareAgentii() {
+        for (int i = 0; i < agentiiImobiliare.size(); i++) {
+            System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
+            System.out.println("Locuinte: ");
+            agentiiImobiliare.get(i).afisareLocuintePretCumparare();
+        }
+    }
+
+    @Override
+    public void afiseazaPreturiChiriiAgentii() {
+        for (int i = 0; i < agentiiImobiliare.size(); i++) {
+            System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
+            System.out.println("Locuinte: ");
+            agentiiImobiliare.get(i).afisareLocuinteChirii();
+        }
+    }
+
+    @Override
     public void afiseazaLocuinteAgentie(int i) {
         agentiiImobiliare.get(i).afisareLocuinte();
+    }
+
+    @Override
+    public void afiseazaPreturiCumparareAgentie(int i) {
+        agentiiImobiliare.get(i).afisareLocuintePretCumparare();
+    }
+
+    @Override
+    public void afiseazaPreturiChiriiAgentie(int i) {
+        agentiiImobiliare.get(i).afisareLocuinteChirii();
     }
 
     @Override
@@ -114,8 +142,8 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
         ArrayList<Locuinta> listaLocuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
         listaLocuinte.set(iLocuinta, locuintaModificata);
         TreeMap<Double, Locuinta> mapLocuinte = new TreeMap<>();
-        for (int i = 0; i < listaLocuinte.size(); i++) {
-            mapLocuinte.put(listaLocuinte.get(i).calculPretCumparare(0), listaLocuinte.get(i));
+        for (Locuinta locuinta : listaLocuinte) {
+            mapLocuinte.put(locuinta.calculPretCumparare(0), locuinta);
         }
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
     }
@@ -125,8 +153,8 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
         ArrayList<Locuinta> listaLocuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
         listaLocuinte.remove(iLocuinta);
         TreeMap<Double, Locuinta> mapLocuinte = new TreeMap<>();
-        for (int i = 0; i < listaLocuinte.size(); i++) {
-            mapLocuinte.put(listaLocuinte.get(i).calculPretCumparare(0), listaLocuinte.get(i));
+        for (Locuinta locuinta : listaLocuinte) {
+            mapLocuinte.put(locuinta.calculPretCumparare(0), locuinta);
         }
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
     }
