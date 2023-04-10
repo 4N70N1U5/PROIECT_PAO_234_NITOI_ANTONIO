@@ -7,8 +7,8 @@ public class CasaCuPiscina extends CasaCuCurte {
     private int lungimePiscina;
     private int latimePiscina;
 
-    public CasaCuPiscina(String numeClient, String prenumeClient, double discount, int suprafataUtila, int numarEtaje, int suprafataCurte, int lungimePiscina, int latimePiscina) {
-        super(numeClient, prenumeClient, discount, suprafataUtila, numarEtaje, suprafataCurte);
+    public CasaCuPiscina(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int numarEtaje, int suprafataCurte, int lungimePiscina, int latimePiscina) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, numarEtaje, suprafataCurte);
         this.lungimePiscina = lungimePiscina;
         this.latimePiscina = latimePiscina;
     }

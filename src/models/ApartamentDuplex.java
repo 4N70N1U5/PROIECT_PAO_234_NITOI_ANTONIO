@@ -3,8 +3,8 @@ package models;
 public class ApartamentDuplex extends Apartament {
     private int numarEtaje;
 
-    public ApartamentDuplex(String numeClient, String prenumeClient, double discount, int suprafataUtila, int etaj, int numarEtaje) {
-        super(numeClient, prenumeClient, discount, suprafataUtila, etaj);
+    public ApartamentDuplex(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int etaj, int numarEtaje) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, etaj);
         this.numarEtaje = numarEtaje;
     }
 

@@ -6,8 +6,8 @@ import static constants.Constants.VALOARE_STANDARD_CUMPARARE;
 public class ApartamentCuGradina extends Apartament {
     private int suprafataGradina;
 
-    public ApartamentCuGradina(String numeClient, String prenumeClient, double discount, int suprafataUtila, int etaj, int suprafataGradina) {
-        super(numeClient, prenumeClient, discount, suprafataUtila, etaj);
+    public ApartamentCuGradina(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int etaj, int suprafataGradina) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, etaj);
         this.suprafataGradina = suprafataGradina;
     }
 

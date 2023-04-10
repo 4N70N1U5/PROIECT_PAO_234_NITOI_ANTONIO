@@ -7,10 +7,10 @@ import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
-        ApartamentCuGradina locuinta1 = new ApartamentCuGradina("Marian", "Marian", 12, 100, 0, 50);
+        ApartamentCuGradina locuinta1 = new ApartamentCuGradina("Marian", "Marian", 12, Materiale.BETON_ARMAT, 100, 4, 0, 50);
 //        locuinta1.afisareLocuinta();
 
-        Apartament apartament1 = new Apartament("Mihnea", "Mihnea", 15, 70, 1);
+        Apartament apartament1 = new Apartament("Mihnea", "Mihnea", 15, Materiale.CARAMIDA, 70, 3, 1);
 //        apartament1.afisareLocuinta();
 
         Scanner scanner = new Scanner(System.in);

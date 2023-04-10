@@ -6,8 +6,8 @@ import static constants.Constants.VALOARE_STANDARD_CUMPARARE;
 public class Apartament extends Locuinta {
     protected int etaj;
 
-    public Apartament(String numeClient, String prenumeClient, double discount, int suprafataUtila, int etaj) {
-        super(numeClient, prenumeClient, discount, suprafataUtila);
+    public Apartament(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int etaj) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere);
         this.etaj = etaj;
     }
 
