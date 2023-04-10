@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class AgentieImobiliara {
@@ -32,7 +31,7 @@ public class AgentieImobiliara {
         for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
-            if (clasa == Apartament.class || clasa == Duplex.class || clasa == ApartamentCuGradina.class) {
+            if (clasa == Apartament.class || clasa == ApartamentDuplex.class || clasa == ApartamentCuGradina.class) {
                 locuinte.get(i).afisareLocuinta();
                 System.out.println();
             }
@@ -54,7 +53,7 @@ public class AgentieImobiliara {
         for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
-            if (clasa == Duplex.class) {
+            if (clasa == ApartamentDuplex.class) {
                 locuinte.get(i).afisareLocuinta();
                 System.out.println();
             }

@@ -1,9 +1,9 @@
 package models;
 
-public class Duplex extends Apartament {
+public class ApartamentDuplex extends Apartament {
     private int numarEtaje;
 
-    public Duplex(String numeClient, String prenumeClient, double discount, int suprafataUtila, int etaj, int numarEtaje) {
+    public ApartamentDuplex(String numeClient, String prenumeClient, double discount, int suprafataUtila, int etaj, int numarEtaje) {
         super(numeClient, prenumeClient, discount, suprafataUtila, etaj);
         this.numarEtaje = numarEtaje;
     }
@@ -24,7 +24,7 @@ public class Duplex extends Apartament {
 
     @Override
     public String toString() {
-        return "Duplex{" +
+        return "ApartamentDuplex{" +
                 "numarEtaje=" + numarEtaje +
                 "} " + super.toString();
     }

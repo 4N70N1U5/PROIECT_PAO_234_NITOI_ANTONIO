@@ -4,7 +4,7 @@ import static constants.Constants.VALOARE_STANDARD_CHIRIE;
 import static constants.Constants.VALOARE_STANDARD_CUMPARARE;
 
 public class Casa extends Locuinta {
-    private int numarEtaje;
+    protected int numarEtaje;
 
     public Casa(String numeClient, String prenumeClient, double discount, int suprafataUtila, int numarEtaje) {
         super(numeClient, prenumeClient, discount, suprafataUtila);
