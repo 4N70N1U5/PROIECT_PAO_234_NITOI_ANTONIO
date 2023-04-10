@@ -1,7 +1,7 @@
 package models;
 
-import static constants.Constants.VALOARE_STANDARD_CHIRIE;
-import static constants.Constants.VALOARE_STANDARD_CUMPARARE;
+import static constants.Constante.VALOARE_STANDARD_CHIRIE;
+import static constants.Constante.VALOARE_STANDARD_CUMPARARE;
 
 public class Casa extends Locuinta {
     protected int numarEtaje;

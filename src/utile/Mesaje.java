@@ -1,7 +1,7 @@
 package utile;
 
 public class Mesaje {
-    public static void Optiuni() {
+    public static void afisareOptiuni() {
         System.out.println("Te rog alege o optiune:");
         System.out.println("Optiunea 1: Adauga o agentie imobiliara.");
         System.out.println("Optiunea 2: Afiseaza agentiile imobiliare.");
@@ -17,11 +17,36 @@ public class Mesaje {
         System.out.print("Optiunea aleasa: ");
     }
 
-    public static void InputInvalid() {
-        System.out.println("Optiune invalida! Te rog incearca din nou!");
+    public static void afisareTipuriLocuinte() {
+        System.out.println("Alege un tip de locuinta:");
+        System.out.println("1: Apartament simplu");
+        System.out.println("2: Apartament duplex");
+        System.out.println("3: Apartament cu gradina");
+        System.out.println("4: Casa simpla");
+        System.out.println("5: Casa cu curte");
+        System.out.println("6: Casa cu piscina");
+        System.out.print("Optiunea aleasa: ");
     }
 
-    public static void IndexInvalid() {
+    public static void afisareOptiuniMateriale() {
+        System.out.println("Optiuni materiale pentru structura de rezistenta:");
+        System.out.println("1: Lemn");
+        System.out.println("2: Caramida");
+        System.out.println("3: Beton");
+        System.out.println("4: Beton armat");
+        System.out.println("5: Metal");
+        System.out.println("Material structura de rezistenta: ");
+    }
+
+    public static void afisareMesajInputInvalid() {
+        System.out.println("Input invalid! Te rog incearca din nou!");
+    }
+
+    public static void afisareMesajIndexInvalid() {
         System.out.println("Index invalid! Te rog incearca din nou!");
+    }
+
+    public static void afisareMesajOptiuneInvalida() {
+        System.out.println("Optiune invalida! Te rog incearca din nou!");
     }
 }
