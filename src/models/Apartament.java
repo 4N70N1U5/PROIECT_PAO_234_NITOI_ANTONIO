@@ -6,8 +6,8 @@ import static constants.Constants.VALOARE_STANDARD_CUMPARARE;
 public class Apartament extends Locuinta {
     protected int etaj;
 
-    public Apartament(String numeClient, Dezvoltator dezvoltator, Arhitect arhitect, int suprafataUtila, double discount, int etaj) {
-        super(numeClient, dezvoltator, arhitect, suprafataUtila, discount);
+    public Apartament(String numeClient, String prenumeClient, Dezvoltator dezvoltator, Arhitect arhitect, int suprafataUtila, double discount, int etaj) {
+        super(numeClient, prenumeClient, dezvoltator, arhitect, suprafataUtila, discount);
         this.etaj = etaj;
     }
 
@@ -33,5 +33,12 @@ public class Apartament extends Locuinta {
     public void afisareLocuinta() {
         super.afisareLocuinta();
         System.out.println("Etaj: " + etaj);
+    }
+
+    @Override
+    public String toString() {
+        return "Apartament{" +
+                "etaj=" + etaj +
+                "} " + super.toString();
     }
 }

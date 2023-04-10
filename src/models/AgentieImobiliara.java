@@ -13,6 +13,14 @@ public class AgentieImobiliara {
         this.locuinte = locuinte;
     }
 
+    public TreeMap<Double, Locuinta> getLocuinte() {
+        return locuinte;
+    }
+
+    public void setLocuinte(TreeMap<Double, Locuinta> locuinte) {
+        this.locuinte = locuinte;
+    }
+
     public void afisareLocuinte() {
         for (Double i : locuinte.keySet()) {
             locuinte.get(i).afisareLocuinta();
@@ -73,5 +81,12 @@ public class AgentieImobiliara {
                 System.out.println();
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "AgentieImobiliara{" +
+                "locuinte=" + locuinte +
+                '}';
     }
 }

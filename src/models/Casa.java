@@ -6,8 +6,8 @@ import static constants.Constants.VALOARE_STANDARD_CUMPARARE;
 public class Casa extends Locuinta {
     private int suprafataCurte;
 
-    public Casa(String numeClient, Dezvoltator dezvoltator, Arhitect arhitect, int suprafataUtila, double discount, int suprafataCurte) {
-        super(numeClient, dezvoltator, arhitect, suprafataUtila, discount);
+    public Casa(String numeClient, String prenumeClient, Dezvoltator dezvoltator, Arhitect arhitect, int suprafataUtila, double discount, int suprafataCurte) {
+        super(numeClient, prenumeClient, dezvoltator, arhitect, suprafataUtila, discount);
         this.suprafataCurte = suprafataCurte;
     }
 
@@ -33,5 +33,12 @@ public class Casa extends Locuinta {
     public void afisareLocuinta() {
         super.afisareLocuinta();
         System.out.println("Suprafata curte: " + suprafataCurte);
+    }
+
+    @Override
+    public String toString() {
+        return "Casa{" +
+                "suprafataCurte=" + suprafataCurte +
+                "} " + super.toString();
     }
 }

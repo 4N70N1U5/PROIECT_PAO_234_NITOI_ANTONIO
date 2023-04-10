@@ -24,4 +24,12 @@ public class Arhitect {
     public void setPrenume(String prenume) {
         this.prenume = prenume;
     }
+
+    @Override
+    public String toString() {
+        return "Arhitect{" +
+                "nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                '}';
+    }
 }

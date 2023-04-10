@@ -3,8 +3,8 @@ package models;
 public class Duplex extends Apartament {
     private int numarEtaje;
 
-    public Duplex(String numeClient, Dezvoltator dezvoltator, Arhitect arhitect, int suprafataUtila, double discount, int etaj, int numarEtaje) {
-        super(numeClient, dezvoltator, arhitect, suprafataUtila, discount, etaj);
+    public Duplex(String numeClient, String prenumeClient, Dezvoltator dezvoltator, Arhitect arhitect, int suprafataUtila, double discount, int etaj, int numarEtaje) {
+        super(numeClient, prenumeClient, dezvoltator, arhitect, suprafataUtila, discount, etaj);
         this.numarEtaje = numarEtaje;
     }
 
@@ -20,5 +20,12 @@ public class Duplex extends Apartament {
     public void afisareLocuinta() {
         super.afisareLocuinta();
         System.out.println("Numar etaje: " + numarEtaje);
+    }
+
+    @Override
+    public String toString() {
+        return "Duplex{" +
+                "numarEtaje=" + numarEtaje +
+                "} " + super.toString();
     }
 }

@@ -26,4 +26,12 @@ public class Dezvoltator {
     public void setDataInfiintare(Date dataInfiintare) {
         this.dataInfiintare = dataInfiintare;
     }
+
+    @Override
+    public String toString() {
+        return "Dezvoltator{" +
+                "numeCompanie='" + numeCompanie + '\'' +
+                ", dataInfiintare=" + dataInfiintare +
+                '}';
+    }
 }
