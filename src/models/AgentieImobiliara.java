@@ -3,13 +3,25 @@ package models;
 import java.util.TreeMap;
 
 public class AgentieImobiliara {
-    private TreeMap<Double, Locuinta> locuinte;
+    private String nume;
+    private TreeMap<Double, Locuinta> locuinte = new TreeMap<>();
+    // Locuintele sunt ordonate crescator dupa pretul de cumparare.
 
-    public AgentieImobiliara() {
+    public AgentieImobiliara(String nume) {
+        this.nume = nume;
     }
 
-    public AgentieImobiliara(TreeMap<Double, Locuinta> locuinte) {
+    public AgentieImobiliara(String nume, TreeMap<Double, Locuinta> locuinte) {
+        this.nume = nume;
         this.locuinte = locuinte;
+    }
+
+    public String getNume() {
+        return nume;
+    }
+
+    public void setNume(String nume) {
+        this.nume = nume;
     }
 
     public TreeMap<Double, Locuinta> getLocuinte() {
