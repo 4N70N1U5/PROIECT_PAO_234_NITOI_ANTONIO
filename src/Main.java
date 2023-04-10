@@ -3,6 +3,7 @@ import models.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,13 +20,13 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Locuinta> listaLocuinte = new ArrayList<>();
-        listaLocuinte.add(locuinta1);
-        listaLocuinte.add(apartament1);
+        TreeMap<Double, Locuinta> listaLocuinte = new TreeMap<>();
+        listaLocuinte.put(locuinta1.calculPretCumparare(0), locuinta1);
+        listaLocuinte.put(apartament1.calculPretCumparare(0), apartament1);
 
         AgentieImobiliara ai = new AgentieImobiliara(listaLocuinte);
         ai.afisareLocuinte();
         System.out.println("------------------");
-        ai.afisareApartamente();
+        ai.afisareApartamenteSimple();
     }
 }

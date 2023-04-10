@@ -1,26 +1,27 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class AgentieImobiliara {
-    private ArrayList<Locuinta> locuinte;
+    private TreeMap<Double, Locuinta> locuinte;
 
     public AgentieImobiliara() {
     }
 
-    public AgentieImobiliara(ArrayList<Locuinta> locuinte) {
+    public AgentieImobiliara(TreeMap<Double, Locuinta> locuinte) {
         this.locuinte = locuinte;
     }
 
     public void afisareLocuinte() {
-        for (int i = 0; i < this.locuinte.size(); i++) {
+        for (Double i : locuinte.keySet()) {
             locuinte.get(i).afisareLocuinta();
             System.out.println();
         }
     }
 
     public void afisareApartamente() {
-        for (int i = 0; i < this.locuinte.size(); i++) {
+        for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
             if (clasa == Apartament.class || clasa == Duplex.class || clasa == ApartamentCuGradina.class) {
@@ -31,7 +32,7 @@ public class AgentieImobiliara {
     }
 
     public void afisareApartamenteSimple() {
-        for (int i = 0; i < this.locuinte.size(); i++) {
+        for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
             if (clasa == Apartament.class) {
@@ -42,7 +43,7 @@ public class AgentieImobiliara {
     }
 
     public void afisareApartamenteDuplex() {
-        for (int i = 0; i < this.locuinte.size(); i++) {
+        for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
             if (clasa == Duplex.class) {
@@ -53,7 +54,7 @@ public class AgentieImobiliara {
     }
 
     public void afisareApartamenteCuGradina() {
-        for (int i = 0; i < this.locuinte.size(); i++) {
+        for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
             if (clasa == ApartamentCuGradina.class) {
@@ -64,7 +65,7 @@ public class AgentieImobiliara {
     }
 
     public void afisareCase() {
-        for (int i = 0; i < this.locuinte.size(); i++) {
+        for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
             if (clasa == Casa.class) {
