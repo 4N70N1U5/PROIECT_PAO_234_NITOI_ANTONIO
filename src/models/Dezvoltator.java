@@ -3,20 +3,20 @@ package models;
 import java.util.Date;
 
 public class Dezvoltator {
-    private String nume;
+    private String numeCompanie;
     private Date dataInfiintare;
 
-    public Dezvoltator(String nume, Date dataInfiintare) {
-        this.nume = nume;
+    public Dezvoltator(String numeCompanie, Date dataInfiintare) {
+        this.numeCompanie = numeCompanie;
         this.dataInfiintare = dataInfiintare;
     }
 
-    public String getNume() {
-        return nume;
+    public String getNumeCompanie() {
+        return numeCompanie;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setNumeCompanie(String numeCompanie) {
+        this.numeCompanie = numeCompanie;
     }
 
     public Date getDataInfiintare() {
