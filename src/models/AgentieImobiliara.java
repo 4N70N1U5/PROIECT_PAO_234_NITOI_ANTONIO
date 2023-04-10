@@ -75,7 +75,40 @@ public class AgentieImobiliara {
         for (Double i : locuinte.keySet()) {
             Class<?> clasa = this.locuinte.get(i).getClass();
 
+            if (clasa == Casa.class || clasa == CasaCuCurte.class || clasa == CasaCuPiscina.class) {
+                locuinte.get(i).afisareLocuinta();
+                System.out.println();
+            }
+        }
+    }
+
+    public void afisareCaseSimple() {
+        for (Double i : locuinte.keySet()) {
+            Class<?> clasa = this.locuinte.get(i).getClass();
+
             if (clasa == Casa.class) {
+                locuinte.get(i).afisareLocuinta();
+                System.out.println();
+            }
+        }
+    }
+
+    public void afisareCaseCuCurte() {
+        for (Double i : locuinte.keySet()) {
+            Class<?> clasa = this.locuinte.get(i).getClass();
+
+            if (clasa == CasaCuCurte.class) {
+                locuinte.get(i).afisareLocuinta();
+                System.out.println();
+            }
+        }
+    }
+
+    public void afisareCaseCuPiscina() {
+        for (Double i : locuinte.keySet()) {
+            Class<?> clasa = this.locuinte.get(i).getClass();
+
+            if (clasa == CasaCuPiscina.class) {
                 locuinte.get(i).afisareLocuinta();
                 System.out.println();
             }
