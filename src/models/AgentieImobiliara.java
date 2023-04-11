@@ -127,18 +127,18 @@ public class AgentieImobiliara {
         }
     }
 
-    public void afisareLocuintePretCumparare() {
+    public void afisareLocuintePretCumparare(int aplicareDiscount) {
         for (Double i : locuinte.keySet()) {
             locuinte.get(i).afisareLocuinta();
-            System.out.println("Pret de cumparare: " + locuinte.get(i).calculPretCumparare(0));
+            System.out.println("Pret de cumparare: " + locuinte.get(i).calculPretCumparare(aplicareDiscount));
             System.out.println();
         }
     }
 
-    public void afisareLocuinteChirii() {
+    public void afisareLocuinteChirii(int aplicareDiscount) {
         for (Double i : locuinte.keySet()) {
             locuinte.get(i).afisareLocuinta();
-            System.out.println("Chirie: " + locuinte.get(i).calculPretChirie(0));
+            System.out.println("Chirie: " + locuinte.get(i).calculPretChirie(aplicareDiscount));
             System.out.println();
         }
     }

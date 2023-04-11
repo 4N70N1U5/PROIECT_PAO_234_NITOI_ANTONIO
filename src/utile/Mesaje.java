@@ -49,4 +49,8 @@ public class Mesaje {
     public static void afisareMesajOptiuneInvalida() {
         System.out.println("Optiune invalida! Te rog incearca din nou!");
     }
+
+    public static void afisareMesajOptiuneDiscountInvalida() {
+        System.out.println("Optiunea pentru aplicarea discountului trebuie sa fie 0 sau 1!");
+    }
 }

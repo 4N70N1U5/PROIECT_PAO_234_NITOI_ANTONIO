@@ -17,11 +17,11 @@ public class Main {
 
     private static final ServiceAgentieImobiliara service = new ServiceAgentieImobiliara();
 
-    public static void clear() {
+    private static void clear() {
         System.out.println(new String(new char[50]).replace("\0", "\r\n"));
     }
 
-    public static Locuinta citireLocuinta(int tipLocuinta) {
+    private static Locuinta citireLocuinta(int tipLocuinta) {
         System.out.print("Nume client: ");
         String nume = scanner.nextLine();
 
@@ -464,8 +464,6 @@ public class Main {
 
                                     indexValid = true;
 
-//                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>(service.getAgentie(i).getLocuinte().values());
-
                                     boolean indexLocuintaValid = false;
 
                                     while (!indexLocuintaValid) {
@@ -517,9 +515,30 @@ public class Main {
                                     break;
                                 }
 
+                                int aplicareDiscount;
+
+                                System.out.print("Doresti sa aplici discountul? (0 pentru nu, 1 pentru da): ");
+
+                                try {
+                                    aplicareDiscount = scanner.nextInt();
+                                    scanner.nextLine();
+
+                                    if (aplicareDiscount != 0 && aplicareDiscount != 1)
+                                        throw new ExceptieValoareInvalida("Optiunea pentru aplicarea discountului trebuie sa fie 0 sau 1!");
+                                }
+                                catch (InputMismatchException exception) {
+                                    scanner.nextLine();
+                                    afisareMesajOptiuneDiscountInvalida();
+                                    break;
+                                }
+                                catch (ExceptieValoareInvalida exceptie) {
+                                    System.out.println(exceptie.getMessage());
+                                    break;
+                                }
+
                                 if (i == 0) {
                                     System.out.println();
-                                    service.afiseazaPreturiCumparareAgentii();
+                                    service.afiseazaPreturiCumparareAgentii(aplicareDiscount);
 
                                     System.out.println("Apasa enter pentru a continua.");
                                     scanner.nextLine();
@@ -532,7 +551,7 @@ public class Main {
 
                                 try {
                                     System.out.println();
-                                    service.afiseazaPreturiCumparareAgentie(i);
+                                    service.afiseazaPreturiCumparareAgentie(i, aplicareDiscount);
 
                                     indexValid = true;
 
@@ -545,7 +564,7 @@ public class Main {
                                 }
                             } catch (InputMismatchException exception) {
                                 scanner.nextLine();
-                                afisareMesajInputInvalid();
+                                afisareMesajIndexInvalid();
                             }
                         }
                     }
@@ -567,9 +586,30 @@ public class Main {
                                     break;
                                 }
 
+                                int aplicareDiscount;
+
+                                System.out.print("Doresti sa aplici discountul? (0 pentru nu, 1 pentru da): ");
+
+                                try {
+                                    aplicareDiscount = scanner.nextInt();
+                                    scanner.nextLine();
+
+                                    if (aplicareDiscount != 0 && aplicareDiscount != 1)
+                                        throw new ExceptieValoareInvalida("Optiunea pentru aplicarea discountului trebuie sa fie 0 sau 1!");
+                                }
+                                catch (InputMismatchException exception) {
+                                    scanner.nextLine();
+                                    afisareMesajOptiuneDiscountInvalida();
+                                    break;
+                                }
+                                catch (ExceptieValoareInvalida exceptie) {
+                                    System.out.println(exceptie.getMessage());
+                                    break;
+                                }
+
                                 if (i == 0) {
                                     System.out.println();
-                                    service.afiseazaPreturiChiriiAgentii();
+                                    service.afiseazaPreturiChiriiAgentii(aplicareDiscount);
 
                                     System.out.println("Apasa enter pentru a continua.");
                                     scanner.nextLine();
@@ -582,7 +622,7 @@ public class Main {
 
                                 try {
                                     System.out.println();
-                                    service.afiseazaPreturiChiriiAgentie(i);
+                                    service.afiseazaPreturiChiriiAgentie(i, aplicareDiscount);
 
                                     indexValid = true;
 
@@ -595,7 +635,7 @@ public class Main {
                                 }
                             } catch (InputMismatchException exception) {
                                 scanner.nextLine();
-                                afisareMesajInputInvalid();
+                                afisareMesajIndexInvalid();
                             }
                         }
                     }

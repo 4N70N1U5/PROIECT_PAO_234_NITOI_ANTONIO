@@ -100,20 +100,20 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
     }
 
     @Override
-    public void afiseazaPreturiCumparareAgentii() {
+    public void afiseazaPreturiCumparareAgentii(int aplicareDiscount) {
         for (int i = 0; i < agentiiImobiliare.size(); i++) {
             System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
             System.out.println("Locuinte: ");
-            agentiiImobiliare.get(i).afisareLocuintePretCumparare();
+            agentiiImobiliare.get(i).afisareLocuintePretCumparare(aplicareDiscount);
         }
     }
 
     @Override
-    public void afiseazaPreturiChiriiAgentii() {
+    public void afiseazaPreturiChiriiAgentii(int aplicareDiscount) {
         for (int i = 0; i < agentiiImobiliare.size(); i++) {
             System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
             System.out.println("Locuinte: ");
-            agentiiImobiliare.get(i).afisareLocuinteChirii();
+            agentiiImobiliare.get(i).afisareLocuinteChirii(aplicareDiscount);
         }
     }
 
@@ -123,13 +123,13 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
     }
 
     @Override
-    public void afiseazaPreturiCumparareAgentie(int i) {
-        agentiiImobiliare.get(i).afisareLocuintePretCumparare();
+    public void afiseazaPreturiCumparareAgentie(int i, int aplicareDiscount) {
+        agentiiImobiliare.get(i).afisareLocuintePretCumparare(aplicareDiscount);
     }
 
     @Override
-    public void afiseazaPreturiChiriiAgentie(int i) {
-        agentiiImobiliare.get(i).afisareLocuinteChirii();
+    public void afiseazaPreturiChiriiAgentie(int i, int aplicareDiscount) {
+        agentiiImobiliare.get(i).afisareLocuinteChirii(aplicareDiscount);
     }
 
     @Override
