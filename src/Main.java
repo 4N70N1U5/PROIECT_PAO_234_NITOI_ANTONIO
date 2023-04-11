@@ -111,23 +111,7 @@ public class Main {
             int latimePiscina = scanner.nextInt();
             scanner.nextLine();
 
-            switch (nrMaterial) {
-                case 1 -> {
-                    return new CasaCuPiscina(nume, prenume, discount, Materiale.LEMN, suprafataUtila, numarCamere, nrEtaje, suprafataCurte, lungimePiscina, latimePiscina);
-                }
-                case 2 -> {
-                    return new CasaCuPiscina(nume, prenume, discount, Materiale.CARAMIDA, suprafataUtila, numarCamere, nrEtaje, suprafataCurte, lungimePiscina, latimePiscina);
-                }
-                case 3 -> {
-                    return new CasaCuPiscina(nume, prenume, discount, Materiale.BETON, suprafataUtila, numarCamere, nrEtaje, suprafataCurte, lungimePiscina, latimePiscina);
-                }
-                case 4 -> {
-                    return new CasaCuPiscina(nume, prenume, discount, Materiale.BETON_ARMAT, suprafataUtila, numarCamere, nrEtaje, suprafataCurte, lungimePiscina, latimePiscina);
-                }
-                case 5 -> {
-                    return new CasaCuPiscina(nume, prenume, discount, Materiale.METAL, suprafataUtila, numarCamere, nrEtaje, suprafataCurte, lungimePiscina, latimePiscina);
-                }
-            }
+            return new CasaCuPiscina(nume, prenume, discount, Materiale.values()[nrMaterial - 1], suprafataUtila, numarCamere, nrEtaje, suprafataCurte, lungimePiscina, latimePiscina);
         }
         return null;
     }
