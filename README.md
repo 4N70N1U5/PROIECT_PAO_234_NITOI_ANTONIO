@@ -1,4 +1,4 @@
-# ProiectPAO
+# Proiect PAO - Nitoi Antonio, grupa 234
 
 Acest program permite crearea, afisarea, modificarea si stergerea unor agentii imobiliare, fiecare dintre acestea gestionand locuinte de diverse tipuri. Agentiile imobiliare sunt implementate cu ajutorul clasei `AgentieImobiliara`.
 
@@ -32,4 +32,4 @@ Astfel, o lista completa a claselor din cadrul proiectului si a atributelor aces
 7. `CasaCuCurte` - toate atributele casei + suprafata curtii
 8. `CasaCuPiscina` - toate atributele casei cu curte + dimensiunile (lungime si latime) piscinei
 
-*Materialele posibile sunt definite intr-un enum.
+*Materialele disponibile sunt definite intr-un enum.
