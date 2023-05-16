@@ -6,15 +6,15 @@ import java.time.format.DateTimeFormatter;
 
 import static constants.Constante.FISIER_AUDIT;
 
-public class AuditService implements IAuditService {
-    private static AuditService instance;
+public class ServiceAudit implements IServiceAudit {
+    private static ServiceAudit instance;
 
-    public AuditService() {
+    private ServiceAudit() {
     }
 
-    public static AuditService getInstance() {
+    public static ServiceAudit getInstance() {
         if (instance == null)
-            instance = new AuditService();
+            instance = new ServiceAudit();
 
         return instance;
     }
@@ -41,7 +41,7 @@ public class AuditService implements IAuditService {
             writer.close();
         }
         catch (IOException e) {
-            System.out.println("EROARE AUDIT");
+            System.out.println("A aparut o eroare in functionarea sistemului de audit.");
         }
     }
 }

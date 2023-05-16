@@ -9,13 +9,24 @@ import java.util.TreeMap;
 import static validations.ValidareLocuinta.*;
 
 public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
+    private static ServiceAgentieImobiliara instance;
     private final ArrayList<AgentieImobiliara> agentiiImobiliare = new ArrayList<>();
+
+    private ServiceAgentieImobiliara() {
+    }
+
+    public static ServiceAgentieImobiliara getInstance() {
+        if (instance == null)
+            instance = new ServiceAgentieImobiliara();
+
+        return instance;
+    }
 
     @Override
     public void adaugaAgentie(AgentieImobiliara agentieImobiliara) {
         agentiiImobiliare.add(agentieImobiliara);
 
-        AuditService.getInstance().scrieMesaj("Agentia " + agentieImobiliara.getNume() + " a fost adaugata.");
+        ServiceAudit.getInstance().scrieMesaj("Agentia " + agentieImobiliara.getNume() + " a fost adaugata.");
     }
 
     @Override
@@ -24,7 +35,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
         }
 
-        AuditService.getInstance().scrieMesaj("Agentiile au fost afisate.");
+        ServiceAudit.getInstance().scrieMesaj("Agentiile au fost afisate.");
     }
 
     @Override
@@ -40,7 +51,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
     public void modificaAgentie(int i, AgentieImobiliara agentieModificata) {
         agentiiImobiliare.set(i, agentieModificata);
 
-        AuditService.getInstance().scrieMesaj("Agentia " + getAgentie(i).getNume() + " a fost modificata si a devenit " + agentieModificata.getNume());
+        ServiceAudit.getInstance().scrieMesaj("Agentia " + getAgentie(i).getNume() + " a fost modificata si a devenit " + agentieModificata.getNume());
     }
 
     @Override
@@ -49,7 +60,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentiiImobiliare.remove(i);
 
-        AuditService.getInstance().scrieMesaj("Agentia " + numeAgentie + " a fost stearsa.");
+        ServiceAudit.getInstance().scrieMesaj("Agentia " + numeAgentie + " a fost stearsa.");
     }
 
     @Override
@@ -99,7 +110,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
         locuinte.put(locuinta.calculPretCumparare(0), locuinta);
         agentieImobiliara.setLocuinte(locuinte);
 
-        AuditService.getInstance().scrieMesaj("O locuinta a fost adaugata in agentia " + agentieImobiliara.getNume());
+        ServiceAudit.getInstance().scrieMesaj("O locuinta a fost adaugata in agentia " + agentieImobiliara.getNume());
     }
 
     @Override
@@ -110,7 +121,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             agentiiImobiliare.get(i).afisareLocuinte();
         }
 
-        AuditService.getInstance().scrieMesaj("Toate locuintele au fost afisate.");
+        ServiceAudit.getInstance().scrieMesaj("Toate locuintele au fost afisate.");
     }
 
     @Override
@@ -121,7 +132,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             agentiiImobiliare.get(i).afisareLocuintePretCumparare(aplicareDiscount);
         }
 
-        AuditService.getInstance().scrieMesaj("Preturile de cumparare ale tuturor locuintelor au fost afisate.");
+        ServiceAudit.getInstance().scrieMesaj("Preturile de cumparare ale tuturor locuintelor au fost afisate.");
     }
 
     @Override
@@ -132,28 +143,28 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             agentiiImobiliare.get(i).afisareLocuinteChirii(aplicareDiscount);
         }
 
-        AuditService.getInstance().scrieMesaj("Preturile chiriilor tuturor locuintelor au fost afisate.");
+        ServiceAudit.getInstance().scrieMesaj("Preturile chiriilor tuturor locuintelor au fost afisate.");
     }
 
     @Override
     public void afiseazaLocuinteAgentie(int i) {
         agentiiImobiliare.get(i).afisareLocuinte();
 
-        AuditService.getInstance().scrieMesaj("Locuintele din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
+        ServiceAudit.getInstance().scrieMesaj("Locuintele din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
     }
 
     @Override
     public void afiseazaPreturiCumparareAgentie(int i, int aplicareDiscount) {
         agentiiImobiliare.get(i).afisareLocuintePretCumparare(aplicareDiscount);
 
-        AuditService.getInstance().scrieMesaj("Preturile de cumparare ale tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
+        ServiceAudit.getInstance().scrieMesaj("Preturile de cumparare ale tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
     }
 
     @Override
     public void afiseazaPreturiChiriiAgentie(int i, int aplicareDiscount) {
         agentiiImobiliare.get(i).afisareLocuinteChirii(aplicareDiscount);
 
-        AuditService.getInstance().scrieMesaj("Preturile chiriilor tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
+        ServiceAudit.getInstance().scrieMesaj("Preturile chiriilor tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
     }
 
     @Override
@@ -174,7 +185,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
 
-        AuditService.getInstance().scrieMesaj("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost modificata.");
+        ServiceAudit.getInstance().scrieMesaj("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost modificata.");
     }
 
     @Override
@@ -190,6 +201,6 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
 
-        AuditService.getInstance().scrieMesaj("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost stearsa.");
+        ServiceAudit.getInstance().scrieMesaj("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost stearsa.");
     }
 }

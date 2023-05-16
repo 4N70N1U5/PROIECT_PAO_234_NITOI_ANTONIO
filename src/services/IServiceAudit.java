@@ -1,5 +1,5 @@
 package services;
 
-public interface IAuditService {
+public interface IServiceAudit {
     void scrieMesaj(String mesaj);
 }
