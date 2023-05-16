@@ -4,6 +4,7 @@ import exceptions.ExceptieValoareInvalida;
 import models.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 import static validations.ValidareLocuinta.*;
@@ -49,9 +50,11 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
     @Override
     public void modificaAgentie(int i, AgentieImobiliara agentieModificata) {
+        AgentieImobiliara agentieOriginala = agentiiImobiliare.get(i);
+
         agentiiImobiliare.set(i, agentieModificata);
 
-        ServiceAudit.getInstance().scrieMesaj("Agentia " + getAgentie(i).getNume() + " a fost modificata si a devenit " + agentieModificata.getNume());
+        ServiceAudit.getInstance().scrieMesaj("Agentia " + agentieOriginala.getNume() + " a fost modificata si a devenit " + agentieModificata.getNume());
     }
 
     @Override
@@ -106,8 +109,15 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
         }
 
         AgentieImobiliara agentieImobiliara = agentiiImobiliare.get(i);
-        TreeMap<Double, Locuinta> locuinte = agentieImobiliara.getLocuinte();
-        locuinte.put(locuinta.calculPretCumparare(0), locuinta);
+        TreeMap<Double, ArrayList<Locuinta>> locuinte = agentieImobiliara.getLocuinte();
+
+        if (locuinte.containsKey(locuinta.calculPretCumparare(0))) {
+            locuinte.get(locuinta.calculPretCumparare(0)).add(locuinta);
+        }
+        else {
+            locuinte.put(locuinta.calculPretCumparare(0), new ArrayList<>(List.of(locuinta)));
+        }
+
         agentieImobiliara.setLocuinte(locuinte);
 
         ServiceAudit.getInstance().scrieMesaj("O locuinta a fost adaugata in agentia " + agentieImobiliara.getNume());
@@ -174,13 +184,24 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
     @Override
     public void modificaLocuinta(int iAgentie, int iLocuinta, Locuinta locuintaModificata) {
-        ArrayList<Locuinta> listaLocuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
+        ArrayList<ArrayList<Locuinta>> locuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
+        ArrayList<Locuinta> listaLocuinte = new ArrayList<>();
+
+        for (ArrayList<Locuinta> listaInterioara : locuinte) {
+            listaLocuinte.addAll(listaInterioara);
+        }
+
         listaLocuinte.set(iLocuinta, locuintaModificata);
 
-        TreeMap<Double, Locuinta> mapLocuinte = new TreeMap<>();
+        TreeMap<Double, ArrayList<Locuinta>> mapLocuinte = new TreeMap<>();
 
         for (Locuinta locuinta : listaLocuinte) {
-            mapLocuinte.put(locuinta.calculPretCumparare(0), locuinta);
+            if (mapLocuinte.containsKey(locuinta.calculPretCumparare(0))) {
+                mapLocuinte.get(locuinta.calculPretCumparare(0)).add(locuinta);
+            }
+            else {
+                mapLocuinte.put(locuinta.calculPretCumparare(0), new ArrayList<>(List.of(locuinta)));
+            }
         }
 
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
@@ -190,13 +211,24 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
     @Override
     public void stergeLocuinta(int iAgentie, int iLocuinta) {
-        ArrayList<Locuinta> listaLocuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
+        ArrayList<ArrayList<Locuinta>> locuinte = new ArrayList<>(agentiiImobiliare.get(iAgentie).getLocuinte().values());
+        ArrayList<Locuinta> listaLocuinte = new ArrayList<>();
+
+        for (ArrayList<Locuinta> listaInterioara : locuinte) {
+            listaLocuinte.addAll(listaInterioara);
+        }
+
         listaLocuinte.remove(iLocuinta);
 
-        TreeMap<Double, Locuinta> mapLocuinte = new TreeMap<>();
+        TreeMap<Double, ArrayList<Locuinta>> mapLocuinte = new TreeMap<>();
 
         for (Locuinta locuinta : listaLocuinte) {
-            mapLocuinte.put(locuinta.calculPretCumparare(0), locuinta);
+            if (mapLocuinte.containsKey(locuinta.calculPretCumparare(0))) {
+                mapLocuinte.get(locuinta.calculPretCumparare(0)).add(locuinta);
+            }
+            else {
+                mapLocuinte.put(locuinta.calculPretCumparare(0), new ArrayList<>(List.of(locuinta)));
+            }
         }
 
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);

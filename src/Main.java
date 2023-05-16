@@ -4,7 +4,7 @@ import models.*;
 import services.ServiceAgentieImobiliara;
 import services.ServiceAudit;
 import services.ServiceCSVAgentieImobiliara;
-import services.ServiceCSVApartament;
+import services.ServiceCSVLocuinta;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -124,6 +124,7 @@ public class Main {
         ServiceAudit.getInstance().scrieMesaj("Programul a fost pornit.");
 
         ServiceCSVAgentieImobiliara.getInstance().readFromCSV();
+        ServiceCSVLocuinta.getInstance().readFromCSV();
 
         while (!exitProgram) {
 
@@ -379,7 +380,14 @@ public class Main {
 
                                     indexValid = true;
 
-                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>(ServiceAgentieImobiliara.getInstance().getAgentie(i).getLocuinte().values());
+//                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>(ServiceAgentieImobiliara.getInstance().getAgentie(i).getLocuinte().values());
+
+                                    ArrayList<ArrayList<Locuinta>> locuinte = new ArrayList<>(ServiceAgentieImobiliara.getInstance().getAgentie(i).getLocuinte().values());
+                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>();
+
+                                    for (ArrayList<Locuinta> listaInterioara : locuinte) {
+                                        listaLocuinte.addAll(listaInterioara);
+                                    }
 
                                     boolean indexLocuintaValid = false;
 
@@ -639,7 +647,7 @@ public class Main {
                         exitProgram = true;
 
                         ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
-                        ServiceCSVApartament.getInstance().writeToCSV();
+                        ServiceCSVLocuinta.getInstance().writeToCSV();
                         ServiceAudit.getInstance().scrieMesaj("Programul a fost inchis.");
                     }
                     default -> throw new ExceptieSelectieInvalida();

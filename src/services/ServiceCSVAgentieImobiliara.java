@@ -40,7 +40,7 @@ public class ServiceCSVAgentieImobiliara implements IServiceCSV {
             ArrayList<AgentieImobiliara> agentii = ServiceAgentieImobiliara.getInstance().getAgentii();
 
             for (int i = 0; i < agentii.size(); i++) {
-                writer.write(i + ", " + agentii.get(i).getNume() + "\n");
+                writer.write((i + 1) + ", " + agentii.get(i).getNume() + "\n");
             }
 
             writer.close();
