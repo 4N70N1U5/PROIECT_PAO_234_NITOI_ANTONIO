@@ -41,4 +41,10 @@ public class CasaCuCurte extends Casa {
                 "suprafataCurte=" + suprafataCurte +
                 "} " + super.toString();
     }
+
+    @Override
+    public String toCSVFormat() {
+        return super.toCSVFormat() + ", " +
+                suprafataCurte;
+    }
 }

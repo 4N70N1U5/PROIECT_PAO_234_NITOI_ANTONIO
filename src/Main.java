@@ -4,6 +4,7 @@ import models.*;
 import services.ServiceAgentieImobiliara;
 import services.ServiceAudit;
 import services.ServiceCSVAgentieImobiliara;
+import services.ServiceCSVApartament;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -118,7 +119,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         boolean exitProgram = false;
-        boolean skipSleep = false;
+        boolean skipSleep = true;
 
         ServiceAudit.getInstance().scrieMesaj("Programul a fost pornit.");
 
@@ -638,6 +639,7 @@ public class Main {
                         exitProgram = true;
 
                         ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
+                        ServiceCSVApartament.getInstance().writeToCSV();
                         ServiceAudit.getInstance().scrieMesaj("Programul a fost inchis.");
                     }
                     default -> throw new ExceptieSelectieInvalida();

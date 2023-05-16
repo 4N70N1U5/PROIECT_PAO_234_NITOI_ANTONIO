@@ -41,4 +41,10 @@ public class Casa extends Locuinta {
                 "numarEtaje=" + numarEtaje +
                 "} " + super.toString();
     }
+
+    @Override
+    public String toCSVFormat() {
+        return super.toCSVFormat() + ", " +
+                numarEtaje;
+    }
 }

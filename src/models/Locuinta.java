@@ -88,4 +88,13 @@ public abstract class Locuinta {
                 ", numarCamere=" + numarCamere +
                 '}';
     }
+
+    public String toCSVFormat() {
+        return numeClient + ", " +
+                prenumeClient + ", " +
+                discount + ", " +
+                structuraRezistenta + ", " +
+                suprafataUtila + ", " +
+                numarCamere;
+    }
 }

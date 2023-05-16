@@ -52,4 +52,11 @@ public class CasaCuPiscina extends CasaCuCurte {
                 ", latimePiscina=" + latimePiscina +
                 "} " + super.toString();
     }
+
+    @Override
+    public String toCSVFormat() {
+        return super.toCSVFormat() + ", " +
+                lungimePiscina + ", " +
+                latimePiscina;
+    }
 }

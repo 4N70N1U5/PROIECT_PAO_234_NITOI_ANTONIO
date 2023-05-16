@@ -22,8 +22,6 @@ public class ServiceCSVAgentieImobiliara implements IServiceCSV {
 
     @Override
     public void writeToCSV() {
-         ArrayList<AgentieImobiliara> agentii = ServiceAgentieImobiliara.getInstance().getAgentii();
-
         try {
             // Creeaza fisierul daca nu exista deja.
             File file = new File(FISIER_AGENTII_IMOBILIARE);
@@ -38,6 +36,8 @@ public class ServiceCSVAgentieImobiliara implements IServiceCSV {
 
             // Scrie in fisier
             BufferedWriter writer = new BufferedWriter(new FileWriter(FISIER_AGENTII_IMOBILIARE, true));
+
+            ArrayList<AgentieImobiliara> agentii = ServiceAgentieImobiliara.getInstance().getAgentii();
 
             for (int i = 0; i < agentii.size(); i++) {
                 writer.write(i + ", " + agentii.get(i).getNume() + "\n");
