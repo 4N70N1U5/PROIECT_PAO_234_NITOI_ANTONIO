@@ -1,6 +1,7 @@
 import exceptions.ExceptieSelectieInvalida;
 import exceptions.ExceptieValoareInvalida;
 import models.*;
+import services.AuditService;
 import services.ServiceAgentieImobiliara;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static utile.Mesaje.*;
+import static utils.Mesaje.*;
 import static validations.ValidareLocuinta.validareMaterial;
 import static validations.ValidareLocuinta.validareTipLocuinta;
 
@@ -120,7 +121,10 @@ public class Main {
         boolean exitProgram = false;
         boolean skipSleep = false;
 
+        AuditService.getInstance().scrieMesaj("Programul a fost pornit.");
+
         while (!exitProgram) {
+
             if (!skipSleep)
                 Thread.sleep(2048);
             else
@@ -155,9 +159,12 @@ public class Main {
                     }
                     case 2 -> {
                         System.out.println("Ai ales 2: Afiseaza agentiile imobiliare.");
+
                         service.afiseazaNumeAgentii();
+
                         System.out.println("Apasa enter pentru a continua.");
                         scanner.nextLine();
+
                         skipSleep = true;
                     }
                     case 3 -> {
@@ -626,7 +633,10 @@ public class Main {
                     case 0 -> {
                         System.out.println("Ai ales 0: Inchide programul.");
                         System.out.println("Programul se va inchide.");
+
                         exitProgram = true;
+
+                        AuditService.getInstance().scrieMesaj("Programul a fost inchis.");
                     }
                     default -> throw new ExceptieSelectieInvalida();
                 }

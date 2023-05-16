@@ -1,4 +1,4 @@
-package utile;
+package utils;
 
 public class Mesaje {
     public static void afisareOptiuni() {
