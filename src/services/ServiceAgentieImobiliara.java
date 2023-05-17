@@ -27,7 +27,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
     public void adaugaAgentie(AgentieImobiliara agentieImobiliara) {
         agentiiImobiliare.add(agentieImobiliara);
 
-        ServiceAudit.getInstance().scrieMesaj("Agentia " + agentieImobiliara.getNume() + " a fost adaugata.");
+        ServiceAudit.getInstance().writeToCSV("Agentia " + agentieImobiliara.getNume() + " a fost adaugata.");
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             System.out.println("Agentia " + (i + 1) + ": " + agentiiImobiliare.get(i).getNume());
         }
 
-        ServiceAudit.getInstance().scrieMesaj("Agentiile au fost afisate.");
+        ServiceAudit.getInstance().writeToCSV("Agentiile au fost afisate.");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentiiImobiliare.set(i, agentieModificata);
 
-        ServiceAudit.getInstance().scrieMesaj("Agentia " + agentieOriginala.getNume() + " a fost modificata si a devenit " + agentieModificata.getNume());
+        ServiceAudit.getInstance().writeToCSV("Agentia " + agentieOriginala.getNume() + " a fost modificata si a devenit " + agentieModificata.getNume());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentiiImobiliare.remove(i);
 
-        ServiceAudit.getInstance().scrieMesaj("Agentia " + numeAgentie + " a fost stearsa.");
+        ServiceAudit.getInstance().writeToCSV("Agentia " + numeAgentie + " a fost stearsa.");
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentieImobiliara.setLocuinte(locuinte);
 
-        ServiceAudit.getInstance().scrieMesaj("O locuinta a fost adaugata in agentia " + agentieImobiliara.getNume());
+        ServiceAudit.getInstance().writeToCSV("O locuinta a fost adaugata in agentia " + agentieImobiliara.getNume());
     }
 
     @Override
@@ -131,7 +131,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             agentiiImobiliare.get(i).afisareLocuinte();
         }
 
-        ServiceAudit.getInstance().scrieMesaj("Toate locuintele au fost afisate.");
+        ServiceAudit.getInstance().writeToCSV("Toate locuintele au fost afisate.");
     }
 
     @Override
@@ -142,7 +142,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             agentiiImobiliare.get(i).afisareLocuintePretCumparare(aplicareDiscount);
         }
 
-        ServiceAudit.getInstance().scrieMesaj("Preturile de cumparare ale tuturor locuintelor au fost afisate.");
+        ServiceAudit.getInstance().writeToCSV("Preturile de cumparare ale tuturor locuintelor au fost afisate.");
     }
 
     @Override
@@ -153,28 +153,28 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
             agentiiImobiliare.get(i).afisareLocuinteChirii(aplicareDiscount);
         }
 
-        ServiceAudit.getInstance().scrieMesaj("Preturile chiriilor tuturor locuintelor au fost afisate.");
+        ServiceAudit.getInstance().writeToCSV("Preturile chiriilor tuturor locuintelor au fost afisate.");
     }
 
     @Override
     public void afiseazaLocuinteAgentie(int i) {
         agentiiImobiliare.get(i).afisareLocuinte();
 
-        ServiceAudit.getInstance().scrieMesaj("Locuintele din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
+        ServiceAudit.getInstance().writeToCSV("Locuintele din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
     }
 
     @Override
     public void afiseazaPreturiCumparareAgentie(int i, int aplicareDiscount) {
         agentiiImobiliare.get(i).afisareLocuintePretCumparare(aplicareDiscount);
 
-        ServiceAudit.getInstance().scrieMesaj("Preturile de cumparare ale tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
+        ServiceAudit.getInstance().writeToCSV("Preturile de cumparare ale tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
     }
 
     @Override
     public void afiseazaPreturiChiriiAgentie(int i, int aplicareDiscount) {
         agentiiImobiliare.get(i).afisareLocuinteChirii(aplicareDiscount);
 
-        ServiceAudit.getInstance().scrieMesaj("Preturile chiriilor tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
+        ServiceAudit.getInstance().writeToCSV("Preturile chiriilor tuturor locuintelor din agentia " + agentiiImobiliare.get(i).getNume() + " au fost afisate.");
     }
 
     @Override
@@ -206,7 +206,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
 
-        ServiceAudit.getInstance().scrieMesaj("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost modificata.");
+        ServiceAudit.getInstance().writeToCSV("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost modificata.");
     }
 
     @Override
@@ -233,6 +233,6 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
         agentiiImobiliare.get(iAgentie).setLocuinte(mapLocuinte);
 
-        ServiceAudit.getInstance().scrieMesaj("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost stearsa.");
+        ServiceAudit.getInstance().writeToCSV("O locuinta din agentia " + agentiiImobiliare.get(iAgentie).getNume() + " a fost stearsa.");
     }
 }

@@ -161,7 +161,7 @@ public class ServiceCSVLocuinta implements IServiceCSV {
             }
         }
         catch (FileNotFoundException e) {
-            System.out.println("Unul din fisierele CSV pentru stocarea Locuintelor nu exista. Acesta va fi creat la inchiderea programului.");
+            System.out.println("Unul din fisierele CSV pentru stocarea Locuintelor nu exista. Acesta va fi creat la salvarea modificarilor.");
         }
         catch (IOException e) {
             System.out.println("A aparut o eroare in functionarea sistemului de stocare a Locuintelor in fisiere CSV.");

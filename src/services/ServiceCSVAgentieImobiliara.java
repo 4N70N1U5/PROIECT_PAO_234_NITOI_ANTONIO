@@ -62,7 +62,7 @@ public class ServiceCSVAgentieImobiliara implements IServiceCSV {
             }
         }
         catch (FileNotFoundException e) {
-            System.out.println("Fisierul CSV pentru stocarea Agentiilor Imobiliare nu exista. Acesta va fi creat la inchiderea programului.");
+            System.out.println("Fisierul CSV pentru stocarea Agentiilor Imobiliare nu exista. Acesta va fi creat la salvarea modificarilor.");
         }
         catch (IOException e) {
             System.out.println("A aparut o eroare in functionarea sistemului de stocare a Agentiilor Imobiliare in fisier CSV.");

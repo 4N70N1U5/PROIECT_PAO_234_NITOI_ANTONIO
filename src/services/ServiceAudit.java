@@ -20,7 +20,7 @@ public class ServiceAudit implements IServiceAudit {
     }
 
     @Override
-    public void scrieMesaj(String mesaj) {
+    public void writeToCSV(String msg) {
         try {
             // Creeaza fisierul daca nu exista deja.
             File file = new File(FISIER_AUDIT);
@@ -37,7 +37,7 @@ public class ServiceAudit implements IServiceAudit {
             DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedTime = currentTime.format(timeFormat);
 
-            writer.write(mesaj + ", " + formattedTime + "\n");
+            writer.write(msg + ", " + formattedTime + "\n");
             writer.close();
         }
         catch (IOException e) {

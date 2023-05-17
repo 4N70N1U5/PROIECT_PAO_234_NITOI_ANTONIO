@@ -121,10 +121,10 @@ public class Main {
         boolean exitProgram = false;
         boolean skipSleep = true;
 
-        ServiceAudit.getInstance().scrieMesaj("Programul a fost pornit.");
+        ServiceAudit.getInstance().writeToCSV("Programul a fost pornit.");
 
-        ServiceCSVAgentieImobiliara.getInstance().readFromCSV();
-        ServiceCSVLocuinta.getInstance().readFromCSV();
+//        ServiceCSVAgentieImobiliara.getInstance().readFromCSV();
+//        ServiceCSVLocuinta.getInstance().readFromCSV();
 
         while (!exitProgram) {
 
@@ -640,15 +640,54 @@ public class Main {
                             }
                         }
                     }
+                    case 11 -> {
+                        System.out.println("Ai ales 11: Salveaza modificarile.");
+                        System.out.println("Modificarile au fost salvate.");
+
+                        ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
+                        ServiceCSVLocuinta.getInstance().writeToCSV();
+                        ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate.");
+                    }
                     case 0 -> {
                         System.out.println("Ai ales 0: Inchide programul.");
+
+                        boolean inputValid = false;
+                        int optiuneSalvare = 0;
+
+                        while (!inputValid) {
+                            System.out.print("Doresti sa salvezi modificarile facute? (0 pentru nu, 1 pentru da): ");
+
+                            try {
+                                optiuneSalvare = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (optiuneSalvare != 0 && optiuneSalvare != 1)
+                                    throw new ExceptieValoareInvalida("Optiunea pentru salvarea modificarilor trebuie sa fie 0 sau 1!");
+                                else
+                                    inputValid = true;
+                            }
+                            catch (InputMismatchException exception) {
+                                scanner.nextLine();
+                                afisareMesajInputInvalid();
+                                break;
+                            }
+                            catch (ExceptieValoareInvalida exceptie) {
+                                System.out.println(exceptie.getMessage());
+                                break;
+                            }
+                        }
+
+                        if (optiuneSalvare == 1) {
+                            ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
+                            ServiceCSVLocuinta.getInstance().writeToCSV();
+                            ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate.");
+                        }
+
                         System.out.println("Programul se va inchide.");
 
                         exitProgram = true;
 
-                        ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
-                        ServiceCSVLocuinta.getInstance().writeToCSV();
-                        ServiceAudit.getInstance().scrieMesaj("Programul a fost inchis.");
+                        ServiceAudit.getInstance().writeToCSV("Programul a fost inchis.");
                     }
                     default -> throw new ExceptieSelectieInvalida();
                 }

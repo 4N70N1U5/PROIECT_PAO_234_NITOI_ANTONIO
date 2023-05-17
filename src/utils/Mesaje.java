@@ -13,6 +13,7 @@ public class Mesaje {
         System.out.println("Optiunea 8: Sterge o locuinta.");
         System.out.println("Optiunea 9: Calculeaza si afiseaza preturi de cumparare.");
         System.out.println("Optiunea 10: Calculeaza si afiseaza chirii.");
+        System.out.println("Optiunea 11: Salveaza modificarile.");
         System.out.println("Optiunea 0: Inchide programul.");
         System.out.print("Optiunea aleasa: ");
     }
