@@ -97,4 +97,13 @@ public abstract class Locuinta {
                 suprafataUtila + ", " +
                 numarCamere;
     }
+
+    public String toInsertFormat() {
+        return "'" + numeClient + "', " +
+                "'" + prenumeClient + "', " +
+                "'" + discount + "', " +
+                "'" + structuraRezistenta + "', " +
+                "'" + suprafataUtila + "', " +
+                "'" + numarCamere + "'";
+    }
 }

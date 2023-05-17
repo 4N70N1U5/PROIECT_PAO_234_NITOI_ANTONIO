@@ -1,10 +1,7 @@
 import exceptions.ExceptieSelectieInvalida;
 import exceptions.ExceptieValoareInvalida;
 import models.*;
-import services.ServiceAgentieImobiliara;
-import services.ServiceAudit;
-import services.ServiceCSVAgentieImobiliara;
-import services.ServiceCSVLocuinta;
+import services.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -125,6 +122,9 @@ public class Main {
 
 //        ServiceCSVAgentieImobiliara.getInstance().readFromCSV();
 //        ServiceCSVLocuinta.getInstance().readFromCSV();
+
+        ServiceDBAgentieImobiliara.getInstance().loadFromDB();
+        ServiceDBLocuinta.getInstance().loadFromDB();
 
         while (!exitProgram) {
 
@@ -644,8 +644,14 @@ public class Main {
                         System.out.println("Ai ales 11: Salveaza modificarile.");
                         System.out.println("Modificarile au fost salvate.");
 
-                        ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
-                        ServiceCSVLocuinta.getInstance().writeToCSV();
+                        ServiceDBLocuinta.getInstance().deleteFromDB();
+                        ServiceDBAgentieImobiliara.getInstance().deleteFromDB();
+
+                        ServiceDBAgentieImobiliara.getInstance().saveToDB();
+                        ServiceDBLocuinta.getInstance().saveToDB();
+
+//                        ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
+//                        ServiceCSVLocuinta.getInstance().writeToCSV();
                         ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate.");
                     }
                     case 0 -> {
@@ -678,8 +684,14 @@ public class Main {
                         }
 
                         if (optiuneSalvare == 1) {
-                            ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
-                            ServiceCSVLocuinta.getInstance().writeToCSV();
+                            ServiceDBLocuinta.getInstance().deleteFromDB();
+                            ServiceDBAgentieImobiliara.getInstance().deleteFromDB();
+
+                            ServiceDBAgentieImobiliara.getInstance().saveToDB();
+                            ServiceDBLocuinta.getInstance().saveToDB();
+
+//                            ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
+//                            ServiceCSVLocuinta.getInstance().writeToCSV();
                             ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate.");
                         }
 

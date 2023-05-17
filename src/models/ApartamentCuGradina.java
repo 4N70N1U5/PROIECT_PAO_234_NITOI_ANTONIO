@@ -47,4 +47,10 @@ public class ApartamentCuGradina extends Apartament {
         return super.toCSVFormat() + ", " +
                 suprafataGradina;
     }
+
+    @Override
+    public String toInsertFormat() {
+        return super.toInsertFormat() + ", " +
+                "'" + suprafataGradina + "'";
+    }
 }

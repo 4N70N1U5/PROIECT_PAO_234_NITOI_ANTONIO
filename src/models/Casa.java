@@ -47,4 +47,10 @@ public class Casa extends Locuinta {
         return super.toCSVFormat() + ", " +
                 numarEtaje;
     }
+
+    @Override
+    public String toInsertFormat() {
+        return super.toInsertFormat() + ", " +
+                "'" + numarEtaje + "'";
+    }
 }

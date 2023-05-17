@@ -47,4 +47,10 @@ public class Apartament extends Locuinta {
         return super.toCSVFormat() + ", " +
                 etaj;
     }
+
+    @Override
+    public String toInsertFormat() {
+        return super.toInsertFormat() + ", " +
+                "'" + etaj + "'";
+    }
 }

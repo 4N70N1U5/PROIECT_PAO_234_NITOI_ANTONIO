@@ -34,4 +34,10 @@ public class ApartamentDuplex extends Apartament {
         return super.toCSVFormat() + ", " +
                 numarEtaje;
     }
+
+    @Override
+    public String toInsertFormat() {
+        return super.toInsertFormat() + ", " +
+                "'" + numarEtaje + "'";
+    }
 }

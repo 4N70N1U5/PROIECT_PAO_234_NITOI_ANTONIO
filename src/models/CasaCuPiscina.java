@@ -59,4 +59,11 @@ public class CasaCuPiscina extends CasaCuCurte {
                 lungimePiscina + ", " +
                 latimePiscina;
     }
+
+    @Override
+    public String toInsertFormat() {
+        return super.toInsertFormat() + ", " +
+                "'" + lungimePiscina + "', " +
+                "'" + latimePiscina + "'";
+    }
 }
