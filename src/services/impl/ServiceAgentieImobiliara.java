@@ -1,7 +1,8 @@
-package services;
+package services.impl;
 
 import exceptions.ExceptieValoareInvalida;
 import models.*;
+import services.IServiceAgentieImobiliara;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
 
     @Override
     public void adaugaLocuinta(int i, Locuinta locuinta) {
-        if (!validareValoarePozitiva(locuinta.getDiscount()))
+        if (!validareValoarePozitivaSau0(locuinta.getDiscount()))
             throw new ExceptieValoareInvalida("Discountul trebuie sa aiba valoare pozitiva!");
         if (!validareValoarePozitiva(locuinta.getSuprafataUtila()))
             throw new ExceptieValoareInvalida("Suprafata utila trebuie sa aiba valoare pozitiva!");
@@ -178,8 +179,15 @@ public class ServiceAgentieImobiliara implements IServiceAgentieImobiliara {
     }
 
     @Override
-    public void afiseazaLocuinteAgentieIndexate(int i) {
-        agentiiImobiliare.get(i).afisareLocuinteIndexate();
+    public ArrayList<Locuinta> getLocuinteAgentie(int iAgentie) {
+        ArrayList<ArrayList<Locuinta>> locuinte = new ArrayList<>(getAgentie(iAgentie).getLocuinte().values());
+        ArrayList<Locuinta> listaLocuinte = new ArrayList<>();
+
+        for (ArrayList<Locuinta> listaInterioara : locuinte) {
+            listaLocuinte.addAll(listaInterioara);
+        }
+
+        return listaLocuinte;
     }
 
     @Override

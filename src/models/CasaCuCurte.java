@@ -11,6 +11,16 @@ public class CasaCuCurte extends Casa {
         this.suprafataCurte = suprafataCurte;
     }
 
+    public CasaCuCurte(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int numarEtaje, int suprafataCurte) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, numarEtaje);
+        this.suprafataCurte = suprafataCurte;
+    }
+
+    public CasaCuCurte(int id, String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int numarEtaje, int suprafataCurte) {
+        super(id, numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, numarEtaje);
+        this.suprafataCurte = suprafataCurte;
+    }
+
     public int getSuprafataCurte() {
         return suprafataCurte;
     }

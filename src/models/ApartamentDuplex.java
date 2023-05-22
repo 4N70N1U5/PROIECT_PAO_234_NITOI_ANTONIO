@@ -8,6 +8,16 @@ public class ApartamentDuplex extends Apartament {
         this.numarEtaje = numarEtaje;
     }
 
+    public ApartamentDuplex(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int etaj, int numarEtaje) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, etaj);
+        this.numarEtaje = numarEtaje;
+    }
+
+    public ApartamentDuplex(int id, String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int etaj, int numarEtaje) {
+        super(id, numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, etaj);
+        this.numarEtaje = numarEtaje;
+    }
+
     public int getNumarEtaje() {
         return numarEtaje;
     }

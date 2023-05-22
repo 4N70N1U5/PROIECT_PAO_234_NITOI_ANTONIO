@@ -19,7 +19,7 @@ public interface IServiceAgentieImobiliara {
     void afiseazaLocuinteAgentie(int i);
     void afiseazaPreturiCumparareAgentie(int i, int aplicareDiscount);
     void afiseazaPreturiChiriiAgentie(int i, int aplicareDiscount);
-    void afiseazaLocuinteAgentieIndexate(int i);
+    ArrayList<Locuinta> getLocuinteAgentie(int iAgentie);
     void modificaLocuinta(int iAgentie, int iLocuinta, Locuinta locuintaModificata);
     void stergeLocuinta(int iAgentie, int iLocuinta);
 }

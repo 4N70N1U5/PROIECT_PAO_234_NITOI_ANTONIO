@@ -13,6 +13,18 @@ public class CasaCuPiscina extends CasaCuCurte {
         this.latimePiscina = latimePiscina;
     }
 
+    public CasaCuPiscina(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int numarEtaje, int suprafataCurte, int lungimePiscina, int latimePiscina) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, numarEtaje, suprafataCurte);
+        this.lungimePiscina = lungimePiscina;
+        this.latimePiscina = latimePiscina;
+    }
+
+    public CasaCuPiscina(int id, String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int numarEtaje, int suprafataCurte, int lungimePiscina, int latimePiscina) {
+        super(id, numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, numarEtaje, suprafataCurte);
+        this.lungimePiscina = lungimePiscina;
+        this.latimePiscina = latimePiscina;
+    }
+
     public int getLungimePiscina() {
         return lungimePiscina;
     }
