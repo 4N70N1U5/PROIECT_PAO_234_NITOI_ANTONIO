@@ -11,6 +11,16 @@ public class Apartament extends Locuinta {
         this.etaj = etaj;
     }
 
+    public Apartament(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int etaj) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie);
+        this.etaj = etaj;
+    }
+
+    public Apartament(int id, String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int etaj) {
+        super(id, numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie);
+        this.etaj = etaj;
+    }
+
     public int getEtaj() {
         return etaj;
     }

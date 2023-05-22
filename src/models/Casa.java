@@ -11,6 +11,16 @@ public class Casa extends Locuinta {
         this.numarEtaje = numarEtaje;
     }
 
+    public Casa(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int numarEtaje) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie);
+        this.numarEtaje = numarEtaje;
+    }
+
+    public Casa(int id, String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int numarEtaje) {
+        super(id, numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie);
+        this.numarEtaje = numarEtaje;
+    }
+
     public int getNumarEtaje() {
         return numarEtaje;
     }

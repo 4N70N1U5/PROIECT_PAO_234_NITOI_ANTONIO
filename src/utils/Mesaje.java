@@ -1,7 +1,7 @@
 package utils;
 
 public class Mesaje {
-    public static void afisareOptiuni() {
+    public static void afisareOptiuni(int optiuneService) {
         System.out.println("Te rog alege o optiune (pentru optiunile 5-10 trebuie sa existe agentii imobiliare):");
         System.out.println("Optiunea 1: Adauga o agentie imobiliara.");
         System.out.println("Optiunea 2: Afiseaza agentiile imobiliare.");
@@ -13,7 +13,7 @@ public class Mesaje {
         System.out.println("Optiunea 8: Sterge o locuinta.");
         System.out.println("Optiunea 9: Calculeaza si afiseaza preturi de cumparare.");
         System.out.println("Optiunea 10: Calculeaza si afiseaza chirii.");
-        System.out.println("Optiunea 11: Salveaza modificarile.");
+        if (optiuneService == 0) System.out.println("Optiunea 11: Salveaza modificarile in fisiere CSV.");
         System.out.println("Optiunea 0: Inchide programul.");
         System.out.print("Optiunea aleasa: ");
     }

@@ -11,6 +11,16 @@ public class ApartamentCuGradina extends Apartament {
         this.suprafataGradina = suprafataGradina;
     }
 
+    public ApartamentCuGradina(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int etaj, int suprafataGradina) {
+        super(numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, etaj);
+        this.suprafataGradina = suprafataGradina;
+    }
+
+    public ApartamentCuGradina(int id, String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie, int etaj, int suprafataGradina) {
+        super(id, numeClient, prenumeClient, discount, structuraRezistenta, suprafataUtila, numarCamere, idAgentie, etaj);
+        this.suprafataGradina = suprafataGradina;
+    }
+
     public int getSuprafataGradina() {
         return suprafataGradina;
     }

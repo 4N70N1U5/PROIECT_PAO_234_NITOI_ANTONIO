@@ -1,7 +1,8 @@
 import exceptions.ExceptieSelectieInvalida;
 import exceptions.ExceptieValoareInvalida;
 import models.*;
-import services.*;
+import services.IServiceAgentieImobiliara;
+import services.impl.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -120,11 +121,43 @@ public class Main {
 
         ServiceAudit.getInstance().writeToCSV("Programul a fost pornit.");
 
-//        ServiceCSVAgentieImobiliara.getInstance().readFromCSV();
-//        ServiceCSVLocuinta.getInstance().readFromCSV();
+        boolean selectieServiceOk = false;
+        int optiuneService = 0;
 
-        ServiceDBAgentieImobiliara.getInstance().loadFromDB();
-        ServiceDBLocuinta.getInstance().loadFromDB();
+        while (!selectieServiceOk) {
+            System.out.print("Doresti sa folosesti fisiere CSV sau baza de date pentru incarcarea si salvarea datelor? (0 pentru CSV, 1 pentru BD): ");
+
+            try {
+                optiuneService = scanner.nextInt();
+                scanner.nextLine();
+
+                if (optiuneService != 0 && optiuneService != 1)
+                    throw new ExceptieValoareInvalida("Optiunea pentru persistenta datelor trebuie sa fie 0 sau 1!");
+                else
+                    selectieServiceOk = true;
+            }
+            catch (InputMismatchException exception) {
+                scanner.nextLine();
+                afisareMesajInputInvalid();
+                break;
+            }
+            catch (ExceptieValoareInvalida exceptie) {
+                System.out.println(exceptie.getMessage());
+                break;
+            }
+        }
+
+        IServiceAgentieImobiliara service;
+
+        if (optiuneService == 0) {
+            ServiceCSVAgentieImobiliara.getInstance().readFromCSV();
+            ServiceCSVLocuinta.getInstance().readFromCSV();
+
+            service = ServiceAgentieImobiliara.getInstance();
+        }
+        else {
+            service = ServiceAgentieImobiliaraBD.getInstance();
+        }
 
         while (!exitProgram) {
 
@@ -134,7 +167,7 @@ public class Main {
                 skipSleep = false;
 
             clear();
-            afisareOptiuni();
+            afisareOptiuni(optiuneService);
 
             try {
                 int input = scanner.nextInt();
@@ -156,14 +189,14 @@ public class Main {
 
                         AgentieImobiliara agentieImobiliara = new AgentieImobiliara(numeAgentie);
 
-                        ServiceAgentieImobiliara.getInstance().adaugaAgentie(agentieImobiliara);
+                        service.adaugaAgentie(agentieImobiliara);
 
                         System.out.println("Agentia a fost adaugata.");
                     }
                     case 2 -> {
                         System.out.println("Ai ales 2: Afiseaza agentiile imobiliare.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         System.out.println("Apasa enter pentru a continua.");
                         scanner.nextLine();
@@ -173,7 +206,7 @@ public class Main {
                     case 3 -> {
                         System.out.println("Ai ales 3: Modifica o agentie imobiliara.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -191,7 +224,7 @@ public class Main {
                                 i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
 
                                 try {
-                                    AgentieImobiliara agentieOriginala = ServiceAgentieImobiliara.getInstance().getAgentie(i);
+                                    AgentieImobiliara agentieOriginala = service.getAgentie(i);
 
                                     indexValid = true;
 
@@ -200,7 +233,7 @@ public class Main {
 
                                     AgentieImobiliara agentieModificata = new AgentieImobiliara(numeModificat, agentieOriginala.getLocuinte());
 
-                                    ServiceAgentieImobiliara.getInstance().modificaAgentie(i, agentieModificata);
+                                    service.modificaAgentie(i, agentieModificata);
 
                                     System.out.println("Agentia a fost modificata.");
                                 } catch (IndexOutOfBoundsException exception) {
@@ -215,7 +248,7 @@ public class Main {
                     case 4 -> {
                         System.out.println("Ai ales 4: Sterge o agentie imobiliara.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -233,7 +266,7 @@ public class Main {
                                 i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
 
                                 try {
-                                    ServiceAgentieImobiliara.getInstance().stergeAgentie(i);
+                                    service.stergeAgentie(i);
 
                                     indexValid = true;
 
@@ -250,7 +283,7 @@ public class Main {
                     case 5 -> {
                         System.out.println("Ai ales 5: Adauga o locuinta.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -268,7 +301,7 @@ public class Main {
                                 i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
 
                                 try {
-                                    ServiceAgentieImobiliara.getInstance().getAgentie(i); // Pentru a primi IndexOutOfBoundsException in cazul in care index-ul citit este invalid.
+                                    service.getAgentie(i); // Pentru a primi IndexOutOfBoundsException in cazul in care index-ul citit este invalid.
 
                                     indexValid = true;
                                     clear();
@@ -284,7 +317,7 @@ public class Main {
                                         Locuinta locuinta = citireLocuinta(tipLocuinta);
 
                                         if (locuinta != null) {
-                                            ServiceAgentieImobiliara.getInstance().adaugaLocuinta(i, locuinta);
+                                            service.adaugaLocuinta(i, locuinta);
 
                                             System.out.println("Locuinta a fost adaugata.");
                                         } else
@@ -307,7 +340,7 @@ public class Main {
                     case 6 -> {
                         System.out.println("Ai ales 6: Afiseaza locuintele.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -324,7 +357,7 @@ public class Main {
 
                                 if (i == 0) {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaLocuinteAgentii();
+                                    service.afiseazaLocuinteAgentii();
 
                                     System.out.println("Apasa enter pentru a continua.");
                                     scanner.nextLine();
@@ -337,7 +370,7 @@ public class Main {
 
                                 try {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaLocuinteAgentie(i);
+                                    service.afiseazaLocuinteAgentie(i);
 
                                     indexValid = true;
 
@@ -357,37 +390,30 @@ public class Main {
                     case 7 -> {
                         System.out.println("Ai ales 7: Modifica o locuinta.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
                         while (!indexValid) {
                             System.out.print("Alege agentia pentru care vrei sa modifici o locuinta (sau -1 pentru a anula): ");
                             try {
-                                int i = scanner.nextInt();
+                                int iAgentie = scanner.nextInt();
                                 scanner.nextLine();
 
-                                if (i == -1) {
+                                if (iAgentie == -1) {
                                     skipSleep = true;
                                     break;
                                 }
 
-                                i--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
+                                iAgentie--; // Pentru ca agentiile sunt afisate cu index incepand de la 1, dar in array incep de la 0.
 
                                 try {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaLocuinteAgentieIndexate(i);
+                                    service.afiseazaLocuinteAgentie(iAgentie);
 
                                     indexValid = true;
 
-//                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>(ServiceAgentieImobiliara.getInstance().getAgentie(i).getLocuinte().values());
-
-                                    ArrayList<ArrayList<Locuinta>> locuinte = new ArrayList<>(ServiceAgentieImobiliara.getInstance().getAgentie(i).getLocuinte().values());
-                                    ArrayList<Locuinta> listaLocuinte = new ArrayList<>();
-
-                                    for (ArrayList<Locuinta> listaInterioara : locuinte) {
-                                        listaLocuinte.addAll(listaInterioara);
-                                    }
+                                    ArrayList<Locuinta> listaLocuinte = service.getLocuinteAgentie(iAgentie);
 
                                     boolean indexLocuintaValid = false;
 
@@ -420,7 +446,7 @@ public class Main {
 
                                                 indexLocuintaValid = true;
 
-                                                ServiceAgentieImobiliara.getInstance().modificaLocuinta(i, iLocuinta, locuintaModificata);
+                                                service.modificaLocuinta(iAgentie, iLocuinta, locuintaModificata);
                                                 System.out.println("Locuinta a fost modificata.");
                                             } catch (IndexOutOfBoundsException exception) {
                                                 afisareMesajIndexInvalid();
@@ -442,7 +468,7 @@ public class Main {
                     case 8 -> {
                         System.out.println("Ai ales 8: Sterge o locuinta.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -461,7 +487,7 @@ public class Main {
 
                                 try {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaLocuinteAgentieIndexate(i);
+                                    service.afiseazaLocuinteAgentie(i);
 
                                     indexValid = true;
 
@@ -476,7 +502,7 @@ public class Main {
                                             iLocuinta--;
 
                                             try {
-                                                ServiceAgentieImobiliara.getInstance().stergeLocuinta(i, iLocuinta);
+                                                service.stergeLocuinta(i, iLocuinta);
 
                                                 indexLocuintaValid = true;
 
@@ -501,7 +527,7 @@ public class Main {
                     case 9 -> {
                         System.out.println("Ai ales 9: Calculeaza si afiseaza preturi de cumparare.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -539,7 +565,7 @@ public class Main {
 
                                 if (i == 0) {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaPreturiCumparareAgentii(aplicareDiscount);
+                                    service.afiseazaPreturiCumparareAgentii(aplicareDiscount);
 
                                     System.out.println("Apasa enter pentru a continua.");
                                     scanner.nextLine();
@@ -552,7 +578,7 @@ public class Main {
 
                                 try {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaPreturiCumparareAgentie(i, aplicareDiscount);
+                                    service.afiseazaPreturiCumparareAgentie(i, aplicareDiscount);
 
                                     indexValid = true;
 
@@ -572,7 +598,7 @@ public class Main {
                     case 10 -> {
                         System.out.println("Ai ales 10: Calculeaza si afiseaza chirii.");
 
-                        ServiceAgentieImobiliara.getInstance().afiseazaNumeAgentii();
+                        service.afiseazaNumeAgentii();
 
                         boolean indexValid = false;
 
@@ -610,7 +636,7 @@ public class Main {
 
                                 if (i == 0) {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaPreturiChiriiAgentii(aplicareDiscount);
+                                    service.afiseazaPreturiChiriiAgentii(aplicareDiscount);
 
                                     System.out.println("Apasa enter pentru a continua.");
                                     scanner.nextLine();
@@ -623,7 +649,7 @@ public class Main {
 
                                 try {
                                     System.out.println();
-                                    ServiceAgentieImobiliara.getInstance().afiseazaPreturiChiriiAgentie(i, aplicareDiscount);
+                                    service.afiseazaPreturiChiriiAgentie(i, aplicareDiscount);
 
                                     indexValid = true;
 
@@ -641,58 +667,51 @@ public class Main {
                         }
                     }
                     case 11 -> {
-                        System.out.println("Ai ales 11: Salveaza modificarile.");
-                        System.out.println("Modificarile au fost salvate.");
+                        if (optiuneService == 0) {
+                            System.out.println("Ai ales 11: Salveaza modificarile in fisiere CSV.");
+                            System.out.println("Modificarile au fost salvate.");
 
-                        ServiceDBLocuinta.getInstance().deleteFromDB();
-                        ServiceDBAgentieImobiliara.getInstance().deleteFromDB();
-
-                        ServiceDBAgentieImobiliara.getInstance().saveToDB();
-                        ServiceDBLocuinta.getInstance().saveToDB();
-
-//                        ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
-//                        ServiceCSVLocuinta.getInstance().writeToCSV();
-                        ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate.");
+                            ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
+                            ServiceCSVLocuinta.getInstance().writeToCSV();
+                            ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate in fisiere CSV.");
+                        }
+                        else {
+                            skipSleep = true;
+                        }
                     }
                     case 0 -> {
                         System.out.println("Ai ales 0: Inchide programul.");
 
-                        boolean inputValid = false;
-                        int optiuneSalvare = 0;
+                        if (optiuneService == 0) {
+                            boolean inputValid = false;
+                            int optiuneSalvare = 0;
 
-                        while (!inputValid) {
-                            System.out.print("Doresti sa salvezi modificarile facute? (0 pentru nu, 1 pentru da): ");
+                            while (!inputValid) {
+                                System.out.print("Doresti sa salvezi modificarile facute in fisiere CSV? (0 pentru nu, 1 pentru da): ");
 
-                            try {
-                                optiuneSalvare = scanner.nextInt();
-                                scanner.nextLine();
+                                try {
+                                    optiuneSalvare = scanner.nextInt();
+                                    scanner.nextLine();
 
-                                if (optiuneSalvare != 0 && optiuneSalvare != 1)
-                                    throw new ExceptieValoareInvalida("Optiunea pentru salvarea modificarilor trebuie sa fie 0 sau 1!");
-                                else
-                                    inputValid = true;
+                                    if (optiuneSalvare != 0 && optiuneSalvare != 1)
+                                        throw new ExceptieValoareInvalida("Optiunea pentru salvarea modificarilor trebuie sa fie 0 sau 1!");
+                                    else
+                                        inputValid = true;
+                                } catch (InputMismatchException exception) {
+                                    scanner.nextLine();
+                                    afisareMesajInputInvalid();
+                                    break;
+                                } catch (ExceptieValoareInvalida exceptie) {
+                                    System.out.println(exceptie.getMessage());
+                                    break;
+                                }
                             }
-                            catch (InputMismatchException exception) {
-                                scanner.nextLine();
-                                afisareMesajInputInvalid();
-                                break;
+
+                            if (optiuneSalvare == 1) {
+                                ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
+                                ServiceCSVLocuinta.getInstance().writeToCSV();
+                                ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate in fisiere CSV.");
                             }
-                            catch (ExceptieValoareInvalida exceptie) {
-                                System.out.println(exceptie.getMessage());
-                                break;
-                            }
-                        }
-
-                        if (optiuneSalvare == 1) {
-                            ServiceDBLocuinta.getInstance().deleteFromDB();
-                            ServiceDBAgentieImobiliara.getInstance().deleteFromDB();
-
-                            ServiceDBAgentieImobiliara.getInstance().saveToDB();
-                            ServiceDBLocuinta.getInstance().saveToDB();
-
-//                            ServiceCSVAgentieImobiliara.getInstance().writeToCSV();
-//                            ServiceCSVLocuinta.getInstance().writeToCSV();
-                            ServiceAudit.getInstance().writeToCSV("Modificarile au fost salvate.");
                         }
 
                         System.out.println("Programul se va inchide.");

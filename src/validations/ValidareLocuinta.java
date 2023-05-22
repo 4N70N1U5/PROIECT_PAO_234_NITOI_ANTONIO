@@ -9,8 +9,8 @@ public class ValidareLocuinta {
         return x > 0;
     }
 
-    public static boolean validareValoarePozitiva(double x) {
-        return x > 0;
+    public static boolean validareValoarePozitivaSau0(double x) {
+        return x >= 0;
     }
 
     public static boolean validareEtaj(int x) {

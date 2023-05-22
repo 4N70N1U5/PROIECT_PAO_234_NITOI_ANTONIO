@@ -1,12 +1,14 @@
 package models;
 
 public abstract class Locuinta {
+    protected int id;
     protected String numeClient;
     protected String prenumeClient;
     protected double discount;
     protected Materiale structuraRezistenta;
     protected int suprafataUtila;
     protected int numarCamere;
+    protected int idAgentie;
 
     public Locuinta(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere) {
         this.numeClient = numeClient;
@@ -15,6 +17,35 @@ public abstract class Locuinta {
         this.structuraRezistenta = structuraRezistenta;
         this.suprafataUtila = suprafataUtila;
         this.numarCamere = numarCamere;
+    }
+
+    public Locuinta(String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie) {
+        this.numeClient = numeClient;
+        this.prenumeClient = prenumeClient;
+        this.discount = discount;
+        this.structuraRezistenta = structuraRezistenta;
+        this.suprafataUtila = suprafataUtila;
+        this.numarCamere = numarCamere;
+        this.idAgentie = idAgentie;
+    }
+
+    public Locuinta(int id, String numeClient, String prenumeClient, double discount, Materiale structuraRezistenta, int suprafataUtila, int numarCamere, int idAgentie) {
+        this.id = id;
+        this.numeClient = numeClient;
+        this.prenumeClient = prenumeClient;
+        this.discount = discount;
+        this.structuraRezistenta = structuraRezistenta;
+        this.suprafataUtila = suprafataUtila;
+        this.numarCamere = numarCamere;
+        this.idAgentie = idAgentie;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNumeClient() {
@@ -63,6 +94,14 @@ public abstract class Locuinta {
 
     public void setNumarCamere(int numarCamere) {
         this.numarCamere = numarCamere;
+    }
+
+    public int getIdAgentie() {
+        return idAgentie;
+    }
+
+    public void setIdAgentie(int idAgentie) {
+        this.idAgentie = idAgentie;
     }
 
     public abstract double calculPretChirie(int aplicareDiscount);
